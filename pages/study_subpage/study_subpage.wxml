@@ -1,0 +1,45 @@
+<view class="container">
+  <!-- Filters -->
+  <view class="filters">
+    <view class="filter" bindtap="toggleDropdown" data-type="studyLocation">申研地域
+      <text class="arrow-filter">{{showDropdowns.studyLocation ? '▲' : '▼'}}</text>
+    </view>
+    <view wx:if="{{showDropdowns.studyLocation}}" class="dropdown-menu">
+      <view bindtap="filterBy" data-type="studyLocation" data-value="all" class="dropdown-item">全部</view>
+      <view bindtap="filterBy" data-type="studyLocation" data-value="USA" class="dropdown-item">美国</view>
+      <view bindtap="filterBy" data-type="studyLocation" data-value="UK" class="dropdown-item">英国</view>
+    </view>
+
+    <view class="filter" bindtap="toggleDropdown" data-type="university">所属院校
+      <text class="arrow-filter">{{showDropdowns.university ? '▲' : '▼'}}</text>
+    </view>
+    <view wx:if="{{showDropdowns.university}}" class="dropdown-menu">
+      <view bindtap="filterBy" data-type="university" data-value="all" class="dropdown-item">全部</view>
+      <view bindtap="filterBy" data-type="university" data-value="Harvard" class="dropdown-item">哈佛大学</view>
+      <view bindtap="filterBy" data-type="university" data-value="MIT" class="dropdown-item">麻省理工学院</view>
+    </view>
+
+    <view class="filter" bindtap="toggleDropdown" data-type="major">所属专业
+      <text class="arrow-filter">{{showDropdowns.major ? '▲' : '▼'}}</text>
+    </view>
+    <view wx:if="{{showDropdowns.major}}" class="dropdown-menu">
+      <view bindtap="filterBy" data-type="major" data-value="all" class="dropdown-item">全部</view>
+      <view bindtap="filterBy" data-type="major" data-value="Computer Science" class="dropdown-item">计算机科学</view>
+      <view bindtap="filterBy" data-type="major" data-value="Data Science" class="dropdown-item">数据科学</view>
+    </view>
+  </view>
+
+  <!-- Study List -->
+  <scroll-view class="card-list" scroll-y bindscrolltolower="loadMoreStudies">
+    <block wx:for="{{filteredList}}" wx:key="id">
+      <view class="card" bindtap="openDetailPage" data-id="{{item.id}}">
+        <image src="{{item.image}}" class="card-image" />
+        <view class="card-content">
+          <text class="card-title">{{item.graduateCollege}}</text>
+          <text class="card-subtitle">{{item.major}}</text>
+          <text class="card-tag">{{item.majorType}}</text>
+        </view>
+      </view>
+    </block>
+  </scroll-view>
+</view>

@@ -1,0 +1,346 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "登陆页面"
+			}
+		},
+		{
+			"path": "pages/home/home",
+			"style": {
+				"navigationBarTitleText": "西游教育"
+			}
+		},
+		{
+			"path" : "pages/study_subpage/study_subpage",
+			"style" : 
+			{
+				"navigationBarTitleText" : "申研案例库"
+			}
+		},
+		{
+			"path" : "pages/job_detail/job_detail",
+			"style" : 
+			{
+				"navigationBarTitleText" : "案例详情"
+			}
+		},
+		{
+			"path" : "pages/job_subpage/job_subpage",
+			"style" : 
+			{
+				"navigationBarTitleText" : "求职案例库"
+			}
+		},
+		{
+			"path" : "pages/anliMainPage/anliMainPage",
+			"style" : 
+			{
+				"navigationBarTitleText" : "案例库"
+			}
+		},
+		{
+			"path" : "pages/study_detail/study_detail",
+			"style" : 
+			{
+				"navigationBarTitleText" : "案例详情"
+			}
+		},
+		{
+			"path" : "pages/mianjing/mianjing",
+			"style" : 
+			{
+				"navigationBarTitleText" : "面经搜索"
+			}
+		},
+		{
+			"path" : "pages/recentActivitiesPage/recentActivitiesPage",
+			"style" : 
+			{
+				"navigationBarTitleText" : "近期活动"
+			}
+		},
+		{
+			"path" : "pages/pdf-viewer/pdf-viewer",
+			"style" : 
+			{
+				"navigationBarTitleText" : "PDF Viewer"
+			}
+		},
+		{
+			"path" : "pages/course/course",
+			"style" :
+			{
+				"navigationBarTitleText" : "课程",
+				"onReachBottomDistance": 50
+			}
+		},
+		{
+			"path" : "pages/courseDetail/courseDetail",
+			"style" : 
+			{
+				"navigationBarTitleText" : "课程详情"
+			}
+		},
+		{
+			"path" : "pages/empty/empty",
+			"style" :
+			{
+				"navigationBarTitleText" : "开发中"
+			}
+		},
+		{
+			"path" : "pages/profileMainTest/profileMainTest",
+			"style" : 
+			{
+				"navigationBarTitleText" : "个人中心（测试）"
+			}
+		},
+		{
+			"path" : "pages/messages/messages",
+			"style" : 
+			{
+				"navigationBarTitleText" : "消息通知"
+			}
+		},
+		{
+			"path" : "pages/test/test",
+			"style" : 
+			{
+				"navigationBarTitleText" : "测试用"
+			}
+		},
+		{
+			"path" : "pages/reservation/reservation",
+			"style" : 
+			{
+				"navigationBarTitleText" : "日期预约"
+			}
+		},
+		{
+			"path" : "pages/reservationPeople/reservationPeople",
+			"style" : 
+			{
+				"navigationBarTitleText" : "预约沟通"
+			}
+		},
+		{
+			"path" : "pages/profilePage/profilePage",
+			"style" : 
+			{
+				"navigationBarTitleText" : "个人中心"
+			}
+		},
+		{
+			"path" : "pages/orderPage/orderPage",
+			"style" : 
+			{
+				"navigationBarTitleText" : ""
+			}
+		},
+		{
+			"path" : "pages/bindOfEmail/bindOfEmail",
+			"style" : 
+			{
+				"navigationBarTitleText" : ""
+			}
+		},
+		{
+			"path" : "pages/news/news",
+			"style" : 
+			{
+				"navigationBarTitleText" : ""
+			}
+		},
+		{
+			"path" : "pages/offlineEvent/offlineEvent",
+			"style" : 
+			{
+				"navigationBarTitleText" : "线下活动"
+			}
+		},
+		{
+			"path" : "pages/signupForm/signupForm",
+			"style" : 
+			{
+				"navigationBarTitleText" : "报名表"
+			}
+		},
+		{
+			"path" : "pages/signupInfo/signupInfo",
+			"style" : 
+			{
+				"navigationBarTitleText" : "报名信息管理"
+			}
+		},
+		{
+			"path" : "pages/topicVote/topicVote",
+			"style" : 
+			{
+				"navigationBarTitleText" : ""
+			}
+		},
+		{
+			"path" : "pages/activity/activity",
+			"style" : 
+			{
+				"navigationBarTitleText" : ""
+			}
+		},
+		{
+		  "path": "pages/offlineEventList/offlineEventList",
+		  "style": 
+		  {
+		    "navigationBarTitleText": "全部活动"
+		  }
+		},
+		{
+		  "path": "pages/activity/act1",
+		  "style": 
+		  {
+		    "navigationBarTitleText": "问卷"
+		  }
+		},
+		{
+		  "path": "pages/activity/act2",
+		  "style": 
+		  {
+		    "navigationBarTitleText": "线下活动"
+		  }
+		},
+		{
+		  "path": "pages/activity/act3",
+		  "style": 
+		  {
+		    "navigationBarTitleText": "话题投票"
+		  }
+		},
+		{
+			"path" : "pages/uploadNews/uploadNews",
+			"style" : 
+			{
+				"navigationBarTitleText" : "上传链接"
+			}
+		},
+		{
+			"path" : "pages/upload/upload",
+			"style" : 
+			{
+				"navigationBarTitleText" : "上传图片"
+			}
+		},
+	    {
+			"path": "pages/contractServices/addAssistantQRcode",
+			"style": {
+				"navigationBarTitleText": "添加小助手"
+			}
+		},
+		{
+			"path": "pages/contractServices/manageAddMember",
+			"style": {
+				"navigationBarTitleText": "小助手管理"
+			}
+		},
+		{
+			"path": "pages/liveList/liveList",
+			"style": {
+				"navigationBarTitleText": "直播列表"
+			}
+		},
+		{
+			"path": "pages/liveAdmin/liveAdmin",
+			"style": {
+				"navigationBarTitleText": "直播管理"
+			}
+		},
+		{
+		  "path": "pages/profilePage/favorited",
+		  "style": {
+		    "navigationBarTitleText": "我的收藏"
+		  }
+		},
+		{
+			"path" : "pages/allSignups/allSignups",
+			"style" : 
+			{
+				"navigationBarTitleText" : "查看所有报名"
+			}
+		},
+		{
+			"path" : "pages/allActivities/allActivities",
+			"style" : 
+			{
+				"navigationBarTitleText" : "所有活动"
+			}
+		},
+		{
+			"path" : "pages/allVotes/allVotes",
+			"style" : 
+			{
+				"navigationBarTitleText" : "所有投票"
+			}
+		}
+	],
+	
+	"subPackages": [
+		{
+		  "root": "pages/liveReservationDetail",
+		  "pages": [
+			{
+			  "path": "liveReservationDetail",
+			  "style": {
+				"navigationBarTitleText": "直播预约详情"
+			  }
+			}
+		  ]
+		}
+	],
+
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8",
+		"usingComponents": {
+			"van-button":"/wxcomponents/vant-weapp/dist/button/index",
+			"van-calendar":"/wxcomponents/vant-weapp/dist/calendar/index"
+		}
+	},
+	"tabBar": {
+			"borderStyle": "black",
+			"color": "#444444",
+			"selectedColor": "#32f071",
+			"fontSize": "100px",
+			"list": [
+				{
+					"pagePath": "pages/home/home",
+					"iconPath": "static/tabs/home2.jpg",
+					"selectedIconPath": "static/tabs/home2.jpg",
+					"text": "首页"
+				},{
+					"pagePath":"pages/course/course",
+					"iconPath": "static/tabs/info.jpg",
+					"selectedIconPath": "static/tabs/info.jpg",
+					"text": "课程"
+				},{
+				      "pagePath": "pages/activity/activity",     
+				      "iconPath": "static/tabs/actEvent.png",
+				      "selectedIconPath": "static/tabs/actEvent.png",
+				      "text": "活动"
+				},{
+					// "pagePath": "pages/mianjing/mianjing",
+					"pagePath":"pages/profilePage/profilePage",
+
+					"iconPath": "static/tabs/person3.jpg",
+					"selectedIconPath": "static/tabs/person3.jpg",
+					"text": "个人中心"
+				}
+			]
+		},
+	"uniIdRouter": {},
+	"usingComponents": {
+    "van-calendar": "@vant/weapp/calendar/index",
+    "van-button": "@vant/weapp/button/index"
+  }
+}
