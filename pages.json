@@ -315,25 +315,25 @@
 			"list": [
 				{
 					"pagePath": "pages/home/home",
-					"iconPath": "static/tabs/home2.jpg",
-					"selectedIconPath": "static/tabs/home2.jpg",
+					"iconPath": "static/tabs/home2.png",
+					"selectedIconPath": "static/tabs/home2.png",
 					"text": "首页"
 				},{
 					"pagePath":"pages/course/course",
-					"iconPath": "static/tabs/info.jpg",
-					"selectedIconPath": "static/tabs/info.jpg",
+					"iconPath": "static/tabs/info.png",
+					"selectedIconPath": "static/tabs/info.png",
 					"text": "课程"
 				},{
 				      "pagePath": "pages/activity/activity",     
-				      "iconPath": "static/tabs/actEvent.png",
-				      "selectedIconPath": "static/tabs/actEvent.png",
+				      "iconPath": "static/tabs/event.png",
+				      "selectedIconPath": "static/tabs/event.png",
 				      "text": "活动"
 				},{
 					// "pagePath": "pages/mianjing/mianjing",
 					"pagePath":"pages/profilePage/profilePage",
 
-					"iconPath": "static/tabs/person3.jpg",
-					"selectedIconPath": "static/tabs/person3.jpg",
+					"iconPath": "static/tabs/person3.png",
+					"selectedIconPath": "static/tabs/person3.png",
 					"text": "个人中心"
 				}
 			]
