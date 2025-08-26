@@ -29,9 +29,9 @@
 			  ></image>
 			</view>
 
-			<view class="newAcitivity">
+			<!-- <view class="newAcitivity">
 				<image src="https://seeuedu-image.oss-cn-shenzhen.aliyuncs.com/applets/Component4.png" class="logo-image"></image>
-			</view>
+			</view> -->
 
 			<swiper class="swiper-container" autoplay="true" interval="3000">
 				<swiper-item v-for="(item, index) in swiperList" :key="index" @tap="navigateToPage(item)">
@@ -39,9 +39,11 @@
 				</swiper-item>
 			</swiper>
 
-			<view class="exampleTwo" @tap="openChannelsProfile">
-				<image src="https://seeuedu-image.oss-cn-shenzhen.aliyuncs.com/applets/popularLive.jpg" class="event-image"></image>
-			</view>
+			<swiper class="live-swiper-container" autoplay="true" interval="3000" circular="true">
+				<swiper-item v-for="(item, idx) in liveSwiperList" :key="idx" @tap="navigateToLive(item)">
+					<image :src="item.imageUrl" class="event-image"></image>
+				</swiper-item>
+			</swiper>
 
 			<!-- <view class="offline-event-button" @tap="navigateToOfflineEvent">
 			  <button class="signup-button">线下活动</button>
@@ -69,11 +71,13 @@ import { addOps } from '../../modules/pointsUtils'
 export default {
 	data() {
 		return {
-		  swiperList: []
+		  swiperList: [],
+		  liveSwiperList: []
 		};
 	},
 	async created() {
 		this.fetchSwiperData();
+		this.fetchLiveSwiperData();
 		const memberId = uni.getStorageSync('memberId');
 		const token = uni.getStorageSync('token');
 		
@@ -153,6 +157,16 @@ export default {
 		    }
 		  }
 		},
+		fetchLiveSwiperData() {
+			this.liveSwiperList = [
+				{
+					imageUrl: 'https://seeuedu-image.oss-cn-shenzhen.aliyuncs.com/applets/popularLive.jpg',
+					type: 'channels',
+					finderUserName: 'sphuM9hRxttKRC4'
+				}
+				// 可以继续追加更多直播卡片
+			];
+		},
 
 		navigateToAnli() {
 			const check1 = uni.getStorageSync("token");
@@ -175,11 +189,11 @@ export default {
 		  });
 		},
 
-		openChannelsProfile() {
-			console.log('Navigating to live list page...');
-			uni.navigateTo({
-				url: '../liveList/liveList'
-			});
+		navigateToLive(item) {
+		  console.log('Navigating to live list page...');
+		  uni.navigateTo({
+		    url: '../liveList/liveList'
+		  });
 		}
 	}
 }
@@ -386,5 +400,15 @@ export default {
   font-size: 32rpx;
   padding: 20rpx;
   border-radius: 10rpx;
+}
+
+.live-swiper-container {
+  position: absolute;
+  width: 650.9389rpx;
+  height: 276.5725rpx;
+  left: calc(50% - 650.9389rpx/2 + 0.9542rpx);
+  top: 990rpx;
+  border-radius: 20px;
+  overflow: hidden;
 }
 </style>
