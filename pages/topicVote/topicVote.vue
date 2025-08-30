@@ -1,6 +1,33 @@
 <template>
   <view class="page-wrapper">
-    <scroll-view scroll-y="true" class="topic-container">
+	<view
+      class="top-gradient"
+      :style="{ height: (statusBarHeight + titleBarHeight + gradientExtra) + 'px' }"
+    ></view>
+
+    <!-- 自定义导航栏（透明，含返回按钮 + 标题） -->
+    <view
+      class="custom-nav"
+      :style="{ height: navHeight + 'px', paddingTop: statusBarHeight + 'px' }"
+    >
+	<image
+	  class="top-right-img" 
+	  src="/static/decorations/Frame1.png" 
+	  mode="widthFix"
+	/>
+      <view class="nav-inner">
+        <!-- 返回按钮 -->
+        <view v-if="canGoBack" class="back-btn" @tap="goBack">
+          <text class="back-arrow">‹</text>
+        </view>
+        <text class="nav-title">话题投票</text>
+      </view>
+    </view>
+    <scroll-view
+      scroll-y="true"
+      class="topic-container"
+      :style="{ paddingTop: navHeight + 'px' }"
+    >
       <view class="single-topic">
         <!-- 标题 + 日期 -->
         <view class="topic-header">
@@ -175,7 +202,16 @@
 import { addPoints } from '@/modules/pointsUtils.js';
 export default {
   data() {
+	const sys = uni.getSystemInfoSync();
+    const statusBarHeight = sys.statusBarHeight || 20;
+    const titleBarHeight = 44;
     return {
+	  statusBarHeight,
+      titleBarHeight,
+      navHeight: statusBarHeight + titleBarHeight,
+      gradientExtra: 160,
+      canGoBack: false,
+	  
       voteID: 'abc123',
       options: [
         { label: '', count: 0, percent: 0 },
@@ -237,8 +273,25 @@ export default {
 	} 
 	console.log('vote页面加载，活动ID:', this.voteID);
   },
+  
+  onShow() {
+      // 👇 新增：判断是否可返回
+      const pages = getCurrentPages();
+      this.canGoBack = pages && pages.length > 1;
+  },
 
   methods: {
+	  
+	goBack() {
+      const pages = getCurrentPages();
+      if (pages.length > 1) {
+        uni.navigateBack({ delta: 1 });
+      } else {
+        // 如果是首页或 tab 页，不可返回，可改成跳首页
+        uni.switchTab({ url: '/pages/index/index' });
+      }
+    },
+	
     // 初始化日期选择器
     initDatePickers() {
       // 生成年份列表 (当前年份前后10年)
@@ -756,12 +809,12 @@ export default {
 .topic-container {
   flex: 1;
   padding: 40rpx 30rpx 120rpx;
-  background-color: #f8f8f8;
+  background-color: transparent; /* 改成透明，就能看到背后的渐变 */
   box-sizing: border-box;
 }
 
 .single-topic {
-  background-color: #ffffff;
+  background-color: transparent;
   border-radius: 20rpx;
   padding: 30rpx;
   display: flex;
@@ -1149,5 +1202,70 @@ export default {
   color: #333;
   text-align: center;
   width: 100%;
+}
+
+/* 顶部渐变层（颜色改为 #8ED2FF -> 透明） */
+.top-gradient {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    #8ED2FF 0%,
+    rgba(142, 210, 255, 0) 100%
+  );
+}
+
+/* 自定义导航 */
+.custom-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 10;
+  background: transparent; /* 保持透明，露出渐变 */
+}
+.nav-inner {
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* 标题居中 */
+  position: relative;
+}
+.nav-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #111;
+  position: relative;
+  z-index: 20;
+}
+
+/* 返回按钮 */
+.back-btn {
+  position: absolute;
+  left: 20rpx;
+  width: 64rpx;
+  height: 64rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 25;
+}
+.back-arrow {
+  font-size: 80rpx;
+  color: #111;
+  line-height: 1;
+}
+
+.topic-container {
+  padding-top: 200rpx; /* 大概 = statusBarHeight + titleBarHeight */
+}
+
+.top-right-img {
+  position: fixed;
+  top: 120rpx;
+  right: 30rpx;
+  width: 240rpx;    /* ⬅️ was 120rpx; double the size */
+  z-index: 3000;
+  /* pointer-events: none; */
 }
 </style>

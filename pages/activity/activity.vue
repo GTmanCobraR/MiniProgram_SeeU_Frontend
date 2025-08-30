@@ -24,19 +24,15 @@
         </view>
       </view>
     </block>
-
-    <!-- 前往全部活动卡片 -->
-    <view class="activity-card" @tap="goToAllActivities">
-      <image
-        class="cover"
-        src="https://dummyimage.com/160x160/1e88ff/fff"
-        mode="aspectFill"
-      />
-      <view class="info">
-        <text class="title">前往全部活动</text>
-        <text class="subtitle">查看所有线下活动</text>
+	
+      <!-- 前往全部活动蓝色按钮 -->
+      <view class="all-activities-button" @tap="goToAllActivities">
+        <view class="info">
+          <text class="title">前往全部活动</text>
+          <text class="subtitle">查看所有线下活动</text>
+        </view>
       </view>
-    </view>
+    
 
     <!-- 管理员按钮组 -->
     <view v-if="showAddActivity || showAddVote" class="bottom-buttons">
@@ -89,7 +85,8 @@ export default {
         {
           id: 1,
           title: "参与问卷调查",
-          imageUrl: "https://seeutest.duckdns.org/images/static/course_image.jpg",
+          // 你模板里用的是 act.cover，所以这里要提供 cover（见下一条）
+          cover: '/static/decorations/logo3.png',
           url: '/pages/activity/act1'
         },
         {
@@ -97,25 +94,25 @@ export default {
           title: 'SeeU公众号',
           subtitle: '点击查看即可获得10积分',
           time: [],
-          cover: 'https://dummyimage.com/160x160/cccccc/fff',
+          cover: '/static/decorations/logo3.png',
         },
         {
           id: 5,
           title: 'SeeU视频号',
           subtitle: '点击查看即可获得10积分',
           time: [],
-          cover: 'https://dummyimage.com/160x160/cccccc/fff',
+          cover: '/static/decorations/logo2.png',
         },
         {
           id: 6,
           title: '西游小助手',
           subtitle: '成功添加小助手可获得50积分',
           time: [],
-          cover: 'https://dummyimage.com/160x160/cccccc/fff',
+          cover: '/static/decorations/logo1.png',
           url: '/pages/contractServices/addAssistantQRcode' 
         }
       ],
-      placeholder: 'https://dummyimage.com/160x160/cccccc/fff',
+      placeholder: '/static/decorations/logo1.png',
       showAddActivity: false, // placeholder condition
       showAddVote: false,     // placeholder condition
       refreshing: false       // 下拉刷新状态
@@ -156,7 +153,7 @@ export default {
     //
     const token = await this.getToken();
     var email = (og_email || "").trim();
-    // email = "x15960002256@gmail.com";
+    //email = "x15960002256@gmail.com";
     // email = "hanna@seeu-edu.com";
     // email = "hotmail.com"
     console.log(email);
@@ -518,4 +515,45 @@ export default {
   font-size: 28rpx;
   text-align: center;
 }
+
+/* 前往全部活动蓝色按钮 */
+.all-activities-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: 660rpx;         /* 宽度改大 */
+  height: 120rpx;        /* 高度改大 */
+  border-radius: 12rpx;
+  padding: 24rpx;
+  gap: 8rpx;
+
+  background-color: #296AEF;
+  margin: 0 0 24rpx 5rpx;  /* 水平居中 */
+}
+
+.all-activities-button .title {
+  font-family: "PingFang SC", sans-serif;
+  font-weight: 500;       /* Medium */
+  font-size: 20px;        /* 20px ≈ 40rpx */
+  line-height: 22px;      /* 22px ≈ 44rpx */
+  letter-spacing: 0; 
+  text-align: center;     /* 居中 */
+  vertical-align: middle;
+  color: #fff;
+}
+
+.all-activities-button .subtitle {
+  font-family: "PingFang SC", sans-serif;
+  font-weight: 400;       /* Regular */
+  font-size: 14px;        /* 14px ≈ 28rpx */
+  line-height: 22px;      /* 22px ≈ 44rpx */
+  letter-spacing: 0;
+  text-align: right;      /* 右对齐 */
+  vertical-align: middle;
+  color: #e0e0e0;
+  width: 100%;            /* 确保右对齐生效 */
+}
+
 </style>

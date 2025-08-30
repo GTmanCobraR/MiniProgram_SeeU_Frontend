@@ -129,7 +129,7 @@
 			"path" : "pages/profilePage/profilePage",
 			"style" : 
 			{
-				"navigationBarTitleText" : "个人中心"
+				"navigationStyle": "custom"   // 隐藏系统导航栏
 			}
 		},
 		{
@@ -178,7 +178,7 @@
 			"path" : "pages/topicVote/topicVote",
 			"style" : 
 			{
-				"navigationBarTitleText" : ""
+				"navigationStyle": "custom"   // 隐藏系统导航栏
 			}
 		},
 		{
@@ -199,7 +199,7 @@
 		  "path": "pages/activity/act1",
 		  "style": 
 		  {
-		    "navigationBarTitleText": "问卷"
+		    "navigationStyle": "custom"   // 隐藏系统导航栏
 		  }
 		},
 		{

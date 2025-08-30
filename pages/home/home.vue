@@ -47,13 +47,13 @@
 
 			<!-- <view class="offline-event-button" @tap="navigateToOfflineEvent">
 			  <button class="signup-button">线下活动</button>
-			</view>
+			</view> -->
 			
-			<view class="topic-vote-button" @tap="navigateToTopicVote">
+			<!-- <view class="topic-vote-button" @tap="navigateToTopicVote">
 			  <button class="vote-button">话题投票</button>
-			</view>
+			</view> -->
 			
-			<view class="offline-event-button" @tap="navigateToTestImagePage">
+			<!-- <view class="offline-event-button" @tap="navigateToTestImagePage">
 			  <button class="signup-button">测试 HTTPS 图片</button>
 			</view> -->
 

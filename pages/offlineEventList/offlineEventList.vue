@@ -16,6 +16,15 @@
       </scroll-view>
     </view>
 
+    <!-- 🌍 Floating planet + IP image -->
+    <image class="planet" src="/static/decorations/planet.png" mode="aspectFit" />
+    <image class="ip" src="/static/decorations/IP.png" mode="aspectFit" />
+
+    <!-- ✨ Stars around IP -->
+    <image class="star star-left" src="/static/decorations/star.png" mode="aspectFit" />
+    <image class="star star1" src="/static/decorations/star1.png" mode="aspectFit" />
+    <image class="star star2" src="/static/decorations/star2.png" mode="aspectFit" />
+
     <!-- 仅显示活动列表 -->
     <view class="activity-list">
       <block v-for="act in activities" :key="act.id">
@@ -40,7 +49,9 @@ export default {
       selected: 0,
       days: [],
       activities: [],
-      placeholder: 'https://dummyimage.com/160x160/cccccc/fff'
+      loading: false,
+      refreshing: false,
+      placeholder: '/static/decorations/logo1.png'
     };
   },
   async created() {
@@ -122,6 +133,58 @@ export default {
 .weekday { font-size: 24rpx; line-height: 1; }
 .day-number { font-size: 32rpx; font-weight: bold; line-height: 1; }
 
+/* 🌍 Planet image styles */
+.planet { 
+  position: fixed;
+  bottom: -110px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 850rpx;
+  height: 500rpx;
+  z-index: 0;
+  opacity: 0.9;
+}
+
+/* 🛰 IP image */
+.ip {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300rpx;
+  height: 300rpx;
+  z-index: 1;
+}
+
+/* ✨ Stars (different sizes + heights) */
+.star {
+  position: fixed;
+  z-index: 2;
+}
+
+/* Left star (medium, a bit higher) */
+.star-left {
+  left: calc(50% - 250rpx);
+  bottom: 80px;
+  width: 60rpx;
+  height: 60rpx;
+}
+
+/* Right stars - small cluster, varied heights */
+.star1 {
+  left: calc(50% + 160rpx);
+  bottom: 70px;
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.star2 {
+  left: calc(50% + 210rpx);
+  bottom: 90px;
+  width: 20rpx;
+  height: 20rpx;
+}
+
 .activity-list { padding: 24rpx; }
 .activity-card { display: flex; flex-direction: row; width: 100%; background: #fff; border-radius: 12rpx; margin-bottom: 24rpx; overflow: hidden; box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.06); }
 .cover { width: 160rpx; height: 160rpx; background: #e0e0e0; flex-shrink: 0; }
@@ -129,4 +192,3 @@ export default {
 .title { font-size: 30rpx; font-weight: 600; color: #333; margin-bottom: 12rpx; }
 .subtitle { font-size: 24rpx; color: #888; }
 </style>
-
