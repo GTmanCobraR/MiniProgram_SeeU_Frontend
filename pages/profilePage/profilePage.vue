@@ -24,7 +24,12 @@
     >
       <Container marginBottom="20rpx" :zIndex="0" backgroundColor="#ffffff">
         <text class="zichan">西游资产</text>
-        <InfoGrid :items="grid2Items" />
+
+        <!-- ✅ 只显示“我的积分：数值”这一行 -->
+        <view class="asset-row">
+          <text class="asset-label">我的积分</text>
+          <text class="asset-value">{{ points }}</text>
+        </view>
       </Container>
 
       <Container marginBottom="20rpx" :zIndex="0" backgroundColor="#ffffff">
@@ -73,8 +78,12 @@ export default {
       isLoading: true,
 
       // 统一控制 Header 高度（按需调整到合适位置）
-      headerHeight: '650rpx',
+      headerHeight: '680rpx',
 
+      // ✅ 独立的积分值，用于右侧数字显示
+      points: '0',
+
+      // 保留原有数据结构（若别处复用），但本页不再用它渲染
       grid2Items: [
         { label: '我的账户' },
         { value: '0', label: '我的积分' },
@@ -94,8 +103,12 @@ export default {
       const token = uni.getStorageSync('token');
       const points = await getPoints(memberId, token);
 
+      // ✅ 显示用
+      this.points = String(points ?? 0);
+
+      // 兼容：如果别处还读取 grid2Items，这里同步一下“我的积分”的值
       const pointsItem = this.grid2Items.find(i => i.label === '我的积分');
-      if (pointsItem) pointsItem.value = points;
+      if (pointsItem) pointsItem.value = this.points;
 
       this.isLoading = true;
       try {
@@ -148,6 +161,28 @@ export default {
   font-weight: bold;
   margin-left: 50rpx;
   margin-top: 20rpx;
-  margin-bottom: 20rpx;
+  margin-bottom: 8rpx; /* 稍微缩小与内容间距 */
+}
+
+/* ✅ “我的积分”单行样式 */
+.asset-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24rpx 40rpx;
+  border-top: 1rpx solid #f2f2f2;
+}
+
+.asset-label {
+  font-size: 28rpx;
+  color: #333;
+  font-weight: 500;
+}
+
+.asset-value {
+  font-size: 32rpx;
+  color: #1e88ff;
+  font-weight: 700;
 }
 </style>
