@@ -9,7 +9,7 @@
         v-if="displayQRCodeImage" 
         :src="displayQRCodeImage" 
         class="qr-code-image" 
-        mode="aspectFill" 
+        mode="aspectFit" 
         show-menu-by-longpress="true" 
         @longpress="onQRCodeLongPress" 
         @tap="onQRCodeTap"
@@ -73,9 +73,9 @@ export default {
   computed: {
     displayQRCodeImage() {
       // Priority 1: temp file (downloaded image) - HIGHEST PRIORITY
-      if (this.tempQRCodeImagePath && this.tempQRCodeImagePath.trim()) {
-        return this.tempQRCodeImagePath;
-      }
+      // if (this.tempQRCodeImagePath && this.tempQRCodeImagePath.trim()) {
+      //   return this.tempQRCodeImagePath;
+      // }
       
       // Priority 2: direct URL loading with cache busting (like liveList)
       if (this.qrCodeImageUrl && this.qrCodeImageUrl.startsWith('/files/')) {

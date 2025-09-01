@@ -211,7 +211,7 @@ getuserinfo(event) {
 	    uni.setStorageSync(key, values[index]);
 	  });
 	  uni.setStorageSync('token', 'MUST4NGGT#%)RSHEL8Y');
-	  // uni.setStorageSync('email', 'hanna@seeu-edu.com');
+	  uni.setStorageSync('email', 'hanna@seeu-edu.com');
 	  
 	  // Update admin status after saving user data
 	  this.checkAdminStatus();
