@@ -99,7 +99,21 @@ export default {
   },
   methods: {
     handleBenefitClick() { this.$emit('benefit-click'); },
-    handleCardButtonClick() { this.$emit('card-button-click'); },
+    handleCardButtonClick() { 
+		uni.showModal({
+		  title: '提示',
+		  content: '功能尚未开通',
+		  showCancel: false, // hides the cancel button
+		  confirmText: '确认',
+		  success: (res) => {
+		    if (res.confirm) {
+		      // exit logic here, for example:
+		      uni.navigateBack(); // goes back one page
+		      // or uni.exitMiniProgram(); // completely exit (if allowed)
+		    }
+		  }
+		});
+	},
     handleBindEmailClick() {
       const storedEmail = uni.getStorageSync('email');
       if (storedEmail && storedEmail !== '') {

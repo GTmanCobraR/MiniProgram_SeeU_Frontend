@@ -156,10 +156,10 @@ export default {
 }
 
 .zichan {
-  font-size: 26rpx;
+  font-size: 32rpx;
   color: #000000;
   font-weight: bold;
-  margin-left: 50rpx;
+  margin-left:40rpx;
   margin-top: 20rpx;
   margin-bottom: 8rpx; /* 稍微缩小与内容间距 */
 }
