@@ -57,6 +57,12 @@
 		所属院校
 		<uni-icons :type="dropdowns.university ? 'up' : 'down'" class="arrow-filter"/>
 		<!-- Add dropdown content here -->
+		<filterDropdown
+	      v-if="dropdowns.university"
+	      :options="universityOptions"
+	      :selectedValue="filters.university"
+	      @select="filterBy('university', $event)"
+	    />
 	  </view>
 	  <view class="filter" @tap="toggleDropdown('major')">
 		所属专业
@@ -152,6 +158,7 @@ export default {
   },
   data() {
     return {
+	  universityOptions: [],
       searchQuery: '',
       selectedOption: '按公司',
       options: ['按公司', '按岗位', '按专业', '按学校'],
@@ -362,6 +369,7 @@ export default {
 	      this.allData = this.displayedData;
 	      this.totalData = res.data.total; // Update the total number of data items
 	      this.loading = false;
+		  this.getUniqueCollegeNames();
 	
 	      if (this.displayedData.length >= this.totalData) {
 	        this.allLoaded = true;
@@ -470,6 +478,7 @@ export default {
 	    if (res.code === 200) {
 	      this.searchResults = res.data.records;
 	      this.endQuery = false;
+		  this.getUniqueCollegeNames();
 	      console.log(this.searchResults);
 	      console.log(this.searchResults.length);
 	      console.log('hi');
@@ -509,7 +518,8 @@ export default {
           const matchesIndustry = this.filters.industry ? item.industry === this.filters.industry : true;
           const matchesStudyLocation = this.filters.studyLocation ? item.area === this.filters.studyLocation : true;
           const matchesMajor = this.filters.major ? item.majorType === this.filters.major : true;
-          return matchesPosition && matchesLocation && matchesIndustry && matchesStudyLocation && matchesMajor;
+		  const matchesUniversity = this.filters.university ? item.college === this.filters.university : true;
+           return matchesPosition && matchesLocation && matchesIndustry && matchesStudyLocation && matchesMajor && matchesUniversity;
         });
       },
 	navigateToPdfViewer(filePath) {
@@ -525,7 +535,20 @@ export default {
 		this.loading = true;
 	    this.fetchData(this.pageNum, this.pageSize);
 		console.log(this.allData);
-	  },
+	},
+	getUniqueCollegeNames() {
+	  const allItems = [...this.displayedData, ...this.searchResults];
+	  const collegeNames = allItems
+	    .map(item => item.college?.trim())
+	    .filter(name => !!name);
+	
+	  const uniqueColleges = Array.from(new Set(collegeNames)).sort();
+	
+	  this.universityOptions = [{ label: "全部", value: "all" }]
+	    .concat(uniqueColleges.map(name => ({ label: name, value: name })));
+	
+	  console.log('🎓 Unique School Names:', this.universityOptions);
+	},
   },
   async mounted() {
 	  this.areas_job = [{label: "全部", value: "all"}].concat(await this.getTypes('area_job'));
