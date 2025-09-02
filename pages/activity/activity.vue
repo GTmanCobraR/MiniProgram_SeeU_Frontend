@@ -28,8 +28,7 @@
       <!-- 前往全部活动蓝色按钮 -->
       <view class="all-activities-button" @tap="goToAllActivities">
         <view class="info">
-          <text class="title">前往全部活动</text>
-          <text class="subtitle">查看所有线下活动</text>
+          <text class="title">查看所有线下活动</text>
         </view>
       </view>
     
@@ -524,7 +523,7 @@ export default {
   justify-content: center;
 
   width: 660rpx;         /* 宽度改大 */
-  height: 120rpx;        /* 高度改大 */
+  height: 100rpx;        /* 高度改大 */
   border-radius: 12rpx;
   padding: 24rpx;
   gap: 8rpx;
@@ -535,25 +534,13 @@ export default {
 
 .all-activities-button .title {
   font-family: "PingFang SC", sans-serif;
-  font-weight: 500;       /* Medium */
-  font-size: 20px;        /* 20px ≈ 40rpx */
+  font-weight: 700;       /* Medium */
+  font-size: 18px;        /* 20px ≈ 40rpx */
   line-height: 22px;      /* 22px ≈ 44rpx */
   letter-spacing: 0; 
   text-align: center;     /* 居中 */
   vertical-align: middle;
   color: #fff;
-}
-
-.all-activities-button .subtitle {
-  font-family: "PingFang SC", sans-serif;
-  font-weight: 400;       /* Regular */
-  font-size: 14px;        /* 14px ≈ 28rpx */
-  line-height: 22px;      /* 22px ≈ 44rpx */
-  letter-spacing: 0;
-  text-align: right;      /* 右对齐 */
-  vertical-align: middle;
-  color: #e0e0e0;
-  width: 100%;            /* 确保右对齐生效 */
 }
 
 </style>
