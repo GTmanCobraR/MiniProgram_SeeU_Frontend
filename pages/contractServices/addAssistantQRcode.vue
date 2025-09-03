@@ -55,8 +55,8 @@ export default {
             ]
         };
     },
-    onLoad() {
-        const isAdmin = uni.getStorageSync('role') === '管理员';
+    async onLoad() {
+        const isAdmin = await this.checkAdmin();
         console.log(`isAdmin: ${isAdmin}`);
         if (isAdmin) {
             const url = '/pages/contractServices/manageAddMember';
@@ -66,6 +66,7 @@ export default {
         }
     },
     methods: {
+		
         previewQRCode(url) {
             if (!url) {
                 uni.showToast({
@@ -90,6 +91,43 @@ export default {
                 }
             });
         },
+		
+		async checkAdmin(){
+		        
+		  var og_email = await uni.getStorageSync('email');
+		  //
+		  const token = await this.getToken();
+		  var email = (og_email || "").trim();
+			
+		  console.log(email);
+		  if(email === "") 
+		  {
+		    return false;
+		  }
+		  
+		  try {
+		    const res = await requestWithToken(
+		      `https://seeutest.duckdns.org/seeuapp/admin/check?email=${email}`,
+		      'POST',
+		      {},
+		      token
+		    );
+		    if (res.code === 200) {
+		      console.log(res.data);
+		      console.log(email);
+		      return res.data;
+		    } else {
+		      console.log(res.code);
+		      console.log(email);
+		      console.error('API Error:', res.error);
+		      return false;
+		    }
+		  } catch (e) {
+		    console.error('Request Failed:', e);
+		    return false;
+		  }
+		  
+		},
 
         async getToken() {
             try {

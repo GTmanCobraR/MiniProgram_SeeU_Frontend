@@ -200,6 +200,7 @@
 
 <script>
 import { addPoints } from '@/modules/pointsUtils.js';
+import { requestWithToken } from '@/modules/requestUtils.js';
 export default {
   data() {
 	const sys = uni.getSystemInfoSync();
@@ -262,9 +263,9 @@ export default {
     }
   },
 
-  onLoad(options) {
+  async onLoad(options) {
     const role = uni.getStorageSync('role');
-    this.isAdmin = role === '管理员';
+    this.isAdmin = await this.checkAdmin();
 	this.initDatePickers();
     this.loadVoteInformation();
 	
@@ -281,7 +282,44 @@ export default {
   },
 
   methods: {
+	
+	async checkAdmin(){
+	        
+	  var og_email = await uni.getStorageSync('email');
+	  //
+	  const token = await this.getToken();
+	  var email = (og_email || "").trim();
+		
+	  console.log(email);
+	  if(email === "") 
+	  {
+	    return false;
+	  }
 	  
+	  try {
+	    const res = await requestWithToken(
+	      `https://seeutest.duckdns.org/seeuapp/admin/check?email=${email}`,
+	      'POST',
+	      {},
+	      token
+	    );
+	    if (res.code === 200) {
+	      console.log(res.data);
+	      console.log(email);
+	      return res.data;
+	    } else {
+	      console.log(res.code);
+	      console.log(email);
+	      console.error('API Error:', res.error);
+	      return false;
+	    }
+	  } catch (e) {
+	    console.error('Request Failed:', e);
+	    return false;
+	  }
+	  
+	},
+	
 	goBack() {
       const pages = getCurrentPages();
       if (pages.length > 1) {
@@ -1261,11 +1299,12 @@ export default {
 }
 
 .top-right-img {
+  pointer-events: none;
   position: fixed;
   top: 120rpx;
   right: 30rpx;
   width: 240rpx;    /* ⬅️ was 120rpx; double the size */
-  z-index: 3000;
+  z-index: 0;
   /* pointer-events: none; */
 }
 </style>

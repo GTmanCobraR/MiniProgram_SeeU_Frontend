@@ -165,9 +165,29 @@ export default {
     goToDetail(stream) {
       const points = stream.pointsReward ? stream.pointsReward : 5;
       const liveId = stream.id;
-      uni.navigateTo({
-        url: `/pages/liveReservationDetail/liveReservationDetail?points=${points}&liveId=${liveId}`
-      });
+	  
+	  // 视频号id
+	  const finderUserName = "sphuM9hRxttKRC4";
+	  let noticeId = "";
+	  
+	  wx.getChannelsLiveNoticeInfo({
+		finderUserName: finderUserName,
+		success: (res) => {
+		  // 典型返回：{ noticeId, title, startTime, ... }
+		  noticeId = res.noticeId || {};
+		  // this.setData({ noticeId });
+		  console.log('getChannelsLiveNoticeInfo ok:', res);
+		  console.log(noticeId)
+		},
+		fail: (err) => {
+		  console.error('getChannelsLiveNoticeInfo fail:', err);
+		  wx.showToast({ icon: 'none', title: err?.errMsg || '获取直播预告失败' });
+		}
+	  });
+	  
+      // uni.navigateTo({
+      //   url: `/pages/liveReservationDetail/liveReservationDetail?points=${points}&liveId=${liveId}`
+      // });
     },
     
     goToLiveAdmin() {

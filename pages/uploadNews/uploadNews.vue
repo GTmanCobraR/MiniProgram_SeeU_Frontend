@@ -23,12 +23,25 @@
 </template>
 
 <script>
+import { requestWithToken } from '@/modules/requestUtils.js';
 export default {
   data() {
     return {
       tempUrl: '',
       finalUrl: ''
     };
+  },
+  
+  async onLoad(){
+	  
+	  
+	  const isAdmin = await this.checkAdmin();
+	  console.log(isAdmin)
+	  
+	  if(!await this.checkAdmin()){
+		  this.showCurrentArticle()
+	  }
+	  
   },
 
   onShow() {
@@ -51,6 +64,44 @@ export default {
 	    throw e;
 	  }
 	},
+	
+	async checkAdmin(){
+	        
+	  var og_email = await uni.getStorageSync('email');
+	  //
+	  const token = await this.getToken();
+	  var email = (og_email || "").trim();
+		
+	  console.log(email);
+	  if(email === "") 
+	  {
+	    return false;
+	  }
+	  
+	  try {
+	    const res = await requestWithToken(
+	      `https://seeutest.duckdns.org/seeuapp/admin/check?email=${email}`,
+	      'POST',
+	      {},
+	      token
+	    );
+	    if (res.code === 200) {
+	      console.log(res.data);
+	      console.log(email);
+	      return res.data;
+	    } else {
+	      console.log(res.code);
+	      console.log(email);
+	      console.error('API Error:', res.error);
+	      return false;
+	    }
+	  } catch (e) {
+	    console.error('Request Failed:', e);
+	    return false;
+	  }
+	  
+	},
+	
     previewUrl() {
       const trimmed = this.tempUrl.trim();
       if (!trimmed || !trimmed.startsWith('https://mp.weixin.qq.com')) {

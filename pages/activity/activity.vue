@@ -117,11 +117,17 @@ export default {
       refreshing: false       // 下拉刷新状态
     };
   },
+  async onLoad() {
+    const isAdmin = await this.checkAdmin();
+	this.showAddActivity = isAdmin;
+	this.showAddVote = isAdmin;
+  },
+  
   async created() {
     await this.loadTodayContent();
-    const isAdmin = await this.checkAdmin();
-    this.showAddActivity = isAdmin;
-    this.showAddVote = isAdmin;
+    // const isAdmin = await this.checkAdmin();
+    // this.showAddActivity = isAdmin;
+    // this.showAddVote = isAdmin;
   },
 
   // 页面显示时重新加载数据
@@ -152,9 +158,7 @@ export default {
     //
     const token = await this.getToken();
     var email = (og_email || "").trim();
-    //email = "x15960002256@gmail.com";
-    // email = "hanna@seeu-edu.com";
-    // email = "hotmail.com"
+	
     console.log(email);
     if(email === "") 
     {
