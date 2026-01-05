@@ -41,9 +41,9 @@
         <view class="popup-header">
           <text class="popup-title">报名成功</text>
           <text class="popup-subtitle">\n非常期待您的到来！</text>
-          <image class="popup-close" src="https://seeutest.duckdns.org/images/static/icons/close.png" @tap="closePopup" />
+          <image class="popup-close" src="https://seeu-applets.seeu-edu.com/images/static/icons/close.png" @tap="closePopup" />
         </view>
-                  <image class="popup-character" src="https://seeutest.duckdns.org/images/static/images/character3.png" mode="widthFix" />
+                  <image class="popup-character" src="https://seeu-applets.seeu-edu.com/images/static/images/character3.png" mode="widthFix" />
         <view class="popup-note">
           <text>请准时参加活动，</text>
           <text>\n若无法参加请提前取消哦。</text>
@@ -56,7 +56,7 @@
     <view class="popup-container">
       <!-- 关闭按钮 -->
       <image 
-        src="https://seeutest.duckdns.org/images/static/icons/close.png" 
+        src="https://seeu-applets.seeu-edu.com/images/static/icons/close.png" 
         class="popup-close" 
         @tap="closePointPopup"
       />
@@ -71,7 +71,7 @@
   
       <!-- 插画 -->
       <image 
-        src="https://seeutest.duckdns.org/images/static/images/character4.png" 
+        src="https://seeu-applets.seeu-edu.com/images/static/images/character4.png" 
         class="character-points" 
         mode="aspectFit"
       />
@@ -175,7 +175,7 @@ export default {
       console.log('提交报名数据:', signupData);
 
       uni.request({
-        url: 'https://seeutest.duckdns.org/seeuapp/signup/save',
+        url: 'https://seeu-applets.seeu-edu.com/v2/seeuapp/signup/save',
         method: 'POST',
         data: signupData,
         header: {

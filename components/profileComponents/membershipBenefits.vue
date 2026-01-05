@@ -2,7 +2,7 @@
   <view class="benefit-container">
     <image
       class="benefit-button-image"
-      src="https://seeutest.duckdns.org/images/static/profilePageImages/membershipButton.jpg"
+      src="https://seeu-applets.seeu-edu.com/images/static/profilePageImages/membershipButton.jpg"
       @tap="handleTap"
       hover-class="imagehover"
       hover-stay-time="200"

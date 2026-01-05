@@ -31,7 +31,16 @@
           <text class="asset-value">{{ points }}</text>
         </view>
       </Container>
-
+	  
+	  <Container marginBottom="20rpx" :zIndex="0" backgroundColor="#ffffff">
+	    <InfoButton
+	      title="我的收藏"
+	      :buttonHeight="100"
+	      @button-click="handleButtonClick"
+	    />
+	  </Container>
+	  
+	  
       <Container marginBottom="20rpx" :zIndex="0" backgroundColor="#ffffff">
         <InfoButton
           title="订单"
@@ -136,7 +145,9 @@ export default {
       }
       if (title === '订单') {
         uni.navigateTo({ url: '../orderPage/orderPage' });
-      } else if (title === '消息通知') {
+      } else if (title === '我的收藏'){
+		uni.navigateTo({ url: './favorited'})  
+	  } else if (title === '消息通知') {
         uni.navigateTo({ url: '../messages/messages' });
       } else if (title === '预约沟通') {
         uni.navigateTo({ url: '../reservationPeople/reservationPeople' });

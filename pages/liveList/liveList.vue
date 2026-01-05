@@ -53,7 +53,7 @@ export default {
         // Priority 2: direct URL loading with cache busting (like offlineEvent)
         else if (stream.coverImage && stream.coverImage.startsWith('/files/')) {
           const timestamp = new Date().getTime();
-          const directUrl = `https://seeutest.duckdns.org/seeuapp${stream.coverImage}?t=${timestamp}`;
+          const directUrl = `https://seeu-applets.seeu-edu.com/v2/seeuapp${stream.coverImage}?t=${timestamp}`;
           console.log(`Attempting direct URL loading for stream ${stream.id}:`, directUrl);
           
           // Pre-test the URL to detect JSON responses before the image component tries to load it
@@ -64,10 +64,10 @@ export default {
         // Priority 3: local fallback images
         else {
           const fallbackImages = [
-            'https://seeutest.duckdns.org/images/static/case.jpg',
-            'https://seeutest.duckdns.org/images/static/interview.jpg',
-            'https://seeutest.duckdns.org/images/static/recentActivities.jpg',
-            'https://seeutest.duckdns.org/images/static/popularLive.jpg'
+            'https://seeu-applets.seeu-edu.com/images/static/case.jpg',
+            'https://seeu-applets.seeu-edu.com/images/static/interview.jpg',
+            'https://seeu-applets.seeu-edu.com/images/static/recentActivities.jpg',
+            'https://seeu-applets.seeu-edu.com/images/static/popularLive.jpg'
           ];
           const index = this.streams.indexOf(stream);
           images[stream.id] = fallbackImages[index % fallbackImages.length];
@@ -86,10 +86,12 @@ export default {
     try {
       // Try to fetch from backend first
       const backendStreams = await this.fetchLiveStreamsFromBackend();
-      
+      console.log("*******************************************");
       if (backendStreams && backendStreams.length > 0) {
-        this.streams = backendStreams;
+        this.streams = this.filterFutureLivestreams(backendStreams);
         // Handle cover images for backend streams
+		// Filter to only show future livestreams (upcoming or live, not ended)
+		console.log(this.streams);
         await this.handleCoverImages();
       } else {
         // No backend data available
@@ -103,6 +105,41 @@ export default {
     this.loading = false;
   },
   methods: {
+	filterFutureLivestreams(streams) {
+	  const now = new Date();
+	  console.log('Filtering livestreams, current time:', now);
+	  
+	  const futureStreams = streams.filter(stream => {
+		
+		// If the stream has a scheduledTime field, check if it's in the future or happening now
+		
+		const streamTime = new Date(stream.startTime);
+		const streamEndTime = new Date(stream.endTime);
+		
+		/* Potentially adding an indication to show that stream is 'in progress' */
+		
+		/* TODO */
+		if(streamTime <= now && streamEndTime >= now){
+			stream.status = "live";
+		} else if(streamEndTime < now){
+			stream.status = "ended";
+		}
+		
+		/* Reject streams that have already ended*/
+		// if(streamEndTime < now){
+		// 	return false;
+		// }
+		
+		
+		// Keep streams that are 'live' or 'upcoming'
+		console.log(`Keeping stream: ${stream.title} (status: ${stream.status})`);
+		return true;
+	  });
+	  
+	  console.log(`Filtered ${streams.length} streams down to ${futureStreams.length} future streams`);
+	  return futureStreams;
+	},
+	  
     async fetchLiveStreamsFromBackend() {
       try {
         // Use the same approach as live admin page
@@ -118,7 +155,7 @@ export default {
         console.log('Token formatted for request:', token);
         
         const response = await requestWithToken(
-          'https://seeutest.duckdns.org/seeuapp/livestream/list',
+          'https://seeu-applets.seeu-edu.com/v2/seeuapp/livestream/list',
           'GET',
           {},
           token
@@ -163,28 +200,57 @@ export default {
 
     
     goToDetail(stream) {
+		
+	  if (stream.status === 'ended') {
+		  console.log(`Stream "${stream.title}" has ended, navigation blocked`);
+		  uni.showModal({
+			title: '提示',
+			content: '直播已结束',
+			showCancel: false,
+			confirmText: '确定'
+		  });
+		  return;
+		}
+		
       const points = stream.pointsReward ? stream.pointsReward : 5;
       const liveId = stream.id;
 	  
 	  // 视频号id
 	  const finderUserName = "sphuM9hRxttKRC4";
 	  let noticeId = "";
+	  let feedId = "";
+	  let nonceId = "";
 	  
-	  wx.getChannelsLiveNoticeInfo({
+	  console.log("TESTING LIVESTREAM REDIRECTION")
+	  
+	  wx.getChannelsLiveInfo({
 		finderUserName: finderUserName,
 		success: (res) => {
-		  // 典型返回：{ noticeId, title, startTime, ... }
-		  noticeId = res.noticeId || {};
+		  feedId = res.feedId || {};
+		  nonceId = res.nonceId || {};
 		  // this.setData({ noticeId });
 		  console.log('getChannelsLiveNoticeInfo ok:', res);
-		  console.log(noticeId)
+		  console.log(feedId);
+		  console.log(nonceId);
+		  
+		  wx.openChannelsLive({
+		  		  
+		  	finderUserName: finderUserName,
+			feedId: feedId,
+			nonceId: nonceId,
+			success: (chan) => {
+				
+				console.log('openChannelsLive: ', chan);
+				
+			}
+		  		  
+		  })
 		},
 		fail: (err) => {
 		  console.error('getChannelsLiveNoticeInfo fail:', err);
 		  wx.showToast({ icon: 'none', title: err?.errMsg || '获取直播预告失败' });
 		}
 	  });
-	  
       // uni.navigateTo({
       //   url: `/pages/liveReservationDetail/liveReservationDetail?points=${points}&liveId=${liveId}`
       // });
@@ -213,7 +279,7 @@ export default {
       
       try {
         const res = await requestWithToken(
-          `https://seeutest.duckdns.org/seeuapp/admin/check?email=${email}`,
+          `https://seeu-applets.seeu-edu.com/v2/seeuapp/admin/check?email=${email}`,
           'POST',
           {},
           token
@@ -259,7 +325,7 @@ export default {
         }
         
         // Convert relative URL to full backend URL
-        const fullUrl = `https://seeutest.duckdns.org/seeuapp${relativeUrl}`;
+        const fullUrl = `https://seeu-applets.seeu-edu.com/v2/seeuapp${relativeUrl}`;
         console.log(`Full URL for download:`, fullUrl);
         const res = await uni.getStorageSync('token');
         var token = `Bearer ${res}`;
@@ -358,7 +424,7 @@ export default {
       // Detailed error analysis for backend debugging
       if (stream && stream.coverImage && stream.coverImage.startsWith('/files/')) {
         const timestamp = new Date().getTime();
-        const directUrl = `https://seeutest.duckdns.org/seeuapp${stream.coverImage}?t=${timestamp}`;
+        const directUrl = `https://seeu-applets.seeu-edu.com/v2/seeuapp${stream.coverImage}?t=${timestamp}`;
         
         console.log('=== DIRECT URL LOADING FAILURE ANALYSIS ===');
         console.log('Stream ID:', stream.id);
@@ -380,10 +446,10 @@ export default {
     
     getLocalImage(index) {
       const images = [
-        'https://seeutest.duckdns.org/images/static/case.jpg',
-        'https://seeutest.duckdns.org/images/static/interview.jpg',
-        'https://seeutest.duckdns.org/images/static/recentActivities.jpg',
-        'https://seeutest.duckdns.org/images/static/popularLive.jpg'
+        'https://seeu-applets.seeu-edu.com/images/static/case.jpg',
+        'https://seeu-applets.seeu-edu.com/images/static/interview.jpg',
+        'https://seeu-applets.seeu-edu.com/images/static/recentActivities.jpg',
+        'https://seeu-applets.seeu-edu.com/images/static/popularLive.jpg'
       ];
       return images[index % images.length];
     },
@@ -420,7 +486,7 @@ export default {
           const contentType = response.header['content-type'] || '';
           if (contentType.includes('application/json')) {
             console.log('❌ PRE-TEST: Backend returning JSON instead of image');
-            console.log('🔄 TRIGGERING IMMEDIATE DOWNLOAD FALLBACK');
+            console.log(' TRIGGERING IMMEDIATE DOWNLOAD FALLBACK');
             
             // Find the stream and trigger download fallback
             const stream = this.streams.find(s => s.id === streamId);
@@ -486,29 +552,29 @@ export default {
           const contentType = response.header['content-type'] || '';
           if (contentType.includes('application/json')) {
             console.log('❌ ISSUE IDENTIFIED: Backend returning JSON instead of image');
-            console.log('🔧 BACKEND FIX NEEDED: Configure static file serving to return proper image MIME types');
+            console.log(' BACKEND FIX NEEDED: Configure static file serving to return proper image MIME types');
           } else if (contentType.includes('image/')) {
             console.log('✅ Content-Type is correct (image)');
-            console.log('🔍 OTHER ISSUE: Check CORS headers or file path configuration');
+            console.log(' OTHER ISSUE: Check CORS headers or file path configuration');
           } else {
             console.log('❓ UNKNOWN ISSUE: Unexpected Content-Type:', contentType);
           }
         } else if (response.statusCode === 404) {
           console.log('❌ ISSUE IDENTIFIED: File not found (404)');
-          console.log('🔧 BACKEND FIX NEEDED: Check file path configuration and static file serving setup');
+          console.log(' BACKEND FIX NEEDED: Check file path configuration and static file serving setup');
         } else if (response.statusCode === 403) {
           console.log('❌ ISSUE IDENTIFIED: Access forbidden (403)');
-          console.log('🔧 BACKEND FIX NEEDED: Check authentication/authorization for static file access');
+          console.log(' BACKEND FIX NEEDED: Check authentication/authorization for static file access');
         } else if (response.statusCode === 500) {
           console.log('❌ ISSUE IDENTIFIED: Server error (500)');
-          console.log('🔧 BACKEND FIX NEEDED: Check server logs for internal error details');
+          console.log(' BACKEND FIX NEEDED: Check server logs for internal error details');
         } else {
           console.log('❓ UNKNOWN ISSUE: Unexpected status code:', response.statusCode);
         }
         
       } catch (error) {
         console.log('❌ URL testing failed:', error);
-        console.log('🔧 BACKEND FIX NEEDED: Check network connectivity and server availability');
+        console.log(' BACKEND FIX NEEDED: Check network connectivity and server availability');
       }
       
       console.log('=== END BACKEND URL TESTING ===');
@@ -520,7 +586,7 @@ export default {
 <style scoped>
 .live-list-container {
   padding: 40rpx;
-  background-image: url('https://seeutest.duckdns.org/images/static/background2.jpg');
+  background-image: url('https://seeu-applets.seeu-edu.com/images/static/background2.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

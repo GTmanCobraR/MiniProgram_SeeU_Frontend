@@ -38,7 +38,7 @@ export default {
 	  }
 	  
 	const requestData = {
-	  url: 'https://seeutest.duckdns.org/seeuapp/files/upload',
+	  url: 'https://seeu-applets.seeu-edu.com/v2/seeuapp/files/upload',
 	  filePath: this.imageUrl,
 	  name: 'file',
 	  header: {

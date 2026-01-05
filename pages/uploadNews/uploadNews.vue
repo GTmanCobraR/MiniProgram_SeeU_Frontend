@@ -80,7 +80,7 @@ export default {
 	  
 	  try {
 	    const res = await requestWithToken(
-	      `https://seeutest.duckdns.org/seeuapp/admin/check?email=${email}`,
+	      `https://seeu-applets.seeu-edu.com/v2/seeuapp/admin/check?email=${email}`,
 	      'POST',
 	      {},
 	      token
@@ -140,7 +140,7 @@ export default {
 	  var token = await this.getToken();
 	  
       uni.request({
-        url: 'https://seeutest.duckdns.org/seeuapp/news/upload',
+        url: 'https://seeu-applets.seeu-edu.com/v2/seeuapp/news/upload',
         method: 'POST',
         data: { url: trimmed },
 		header: {

@@ -105,7 +105,7 @@ export default {
       pointsPerTime: '',
       times: '',
       showAddPointsModal: false,
-      baseUrl: 'https://seeutest.duckdns.org/seeuapp'
+      baseUrl: 'https://seeu-applets.seeu-edu.com/v2/seeuapp'
     };
   },
   computed: {

@@ -1,6 +1,6 @@
 <template>
     <view class="container">
-        <image class="bg-image" src="https://seeutest.duckdns.org/images/static/images/bg.jpg" mode="scaleToFill" />
+        <image class="bg-image" src="https://seeu-applets.seeu-edu.com/images/static/images/bg.jpg" mode="scaleToFill" />
 
         <view class="content">
             <view
@@ -43,13 +43,13 @@ export default {
                 {
                     id: 'allen',
                     name: 'SeeU Allen',
-                    qr: 'https://seeutest.duckdns.org/images/static/images/seeU_Allen.jpg',
+                    qr: 'https://seeu-applets.seeu-edu.com/images/static/images/seeU_Allen.jpg',
                     tip: '长按识别二维码，添加 Allen'
                 },
                 {
                     id: 'helen',
                     name: 'SeeU Helen',
-                    qr: 'https://seeutest.duckdns.org/images/static/images/seeU_Helen.jpg',
+                    qr: 'https://seeu-applets.seeu-edu.com/images/static/images/seeU_Helen.jpg',
                     tip: '长按识别二维码，添加 Helen'
                 }
             ]
@@ -107,7 +107,7 @@ export default {
 		  
 		  try {
 		    const res = await requestWithToken(
-		      `https://seeutest.duckdns.org/seeuapp/admin/check?email=${email}`,
+		      `https://seeu-applets.seeu-edu.com/v2/seeuapp/admin/check?email=${email}`,
 		      'POST',
 		      {},
 		      token

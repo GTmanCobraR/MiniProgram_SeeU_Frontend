@@ -94,7 +94,7 @@ export default {
         
         // 获取所有投票
         const voteRes = await requestWithToken(
-          `https://seeutest.duckdns.org/seeuapp/admin/signup/loadAll`,
+          `https://seeu-applets.seeu-edu.com/v2/seeuapp/admin/signup/loadAll`,
           "GET",
           {},
           token
@@ -185,7 +185,7 @@ export default {
           console.log(vote.voteid);
           // 删除当前活动
           const voteRes = await requestWithToken(
-            `https://seeutest.duckdns.org/seeuapp/vote/deleteInformation?id=${vote.voteid}`,
+            `https://seeu-applets.seeu-edu.com/v2/seeuapp/vote/deleteInformation?id=${vote.voteid}`,
             "DELETE",
             {},
             token

@@ -1,6 +1,6 @@
 export const companySubList = [
   {
-    	image: 'https://seeutest.duckdns.org/images/static/google.jpg',
+    	image: 'https://seeu-applets.seeu-edu.com/images/static/google.jpg',
     	title: 'W同学',
     	subtitle: 'Software Engineer',
     	tag: '全职',
@@ -8,7 +8,7 @@ export const companySubList = [
     	file: '/backend/pdfs/google.pdf',
       },
       {
-    	image: 'https://seeutest.duckdns.org/images/static/google.jpg',
+    	image: 'https://seeu-applets.seeu-edu.com/images/static/google.jpg',
     	title: 'L同学',
     	subtitle: 'Senior Data Scientist',
     	tag: '实习',
@@ -16,7 +16,7 @@ export const companySubList = [
     	file: '/backend/pdfs/google.pdf',
       },
       {
-    	image: 'https://seeutest.duckdns.org/images/static/google.jpg',
+    	image: 'https://seeu-applets.seeu-edu.com/images/static/google.jpg',
     	title: 'X同学',
     	subtitle: 'Software Engineer',
     	tag: '实习',
@@ -24,7 +24,7 @@ export const companySubList = [
     	file: '/backend/pdfs/google.pdf',
       },
       {
-      	image: 'https://seeutest.duckdns.org/images/static/google.jpg',
+      	image: 'https://seeu-applets.seeu-edu.com/images/static/google.jpg',
       	title: 'T同学',
       	subtitle: 'Software Engineer',
       	tag: '实习',
@@ -32,7 +32,7 @@ export const companySubList = [
       	file: '/backend/pdfs/meta.pdf',
       },
       {
-      	image: 'https://seeutest.duckdns.org/images/static/google.jpg',
+      	image: 'https://seeu-applets.seeu-edu.com/images/static/google.jpg',
       	title: 'M同学',
       	subtitle: 'Software Engineer',
       	tag: '实习',
@@ -40,7 +40,7 @@ export const companySubList = [
       	file: '/backend/pdfs/meta.pdf',
       },
       {
-      	image: 'https://seeutest.duckdns.org/images/static/google.jpg',
+      	image: 'https://seeu-applets.seeu-edu.com/images/static/google.jpg',
       	title: 'C同学',
       	subtitle: 'Software Engineer',
       	tag: '实习',
@@ -48,7 +48,7 @@ export const companySubList = [
       	file: '/backend/pdfs/meta.pdf',
       },
       {
-      	image: 'https://seeutest.duckdns.org/images/static/google.jpg',
+      	image: 'https://seeu-applets.seeu-edu.com/images/static/google.jpg',
       	title: 'D同学',
       	subtitle: 'Software Engineer',
       	tag: '实习',
@@ -56,7 +56,7 @@ export const companySubList = [
       	file: '/backend/pdfs/meta.pdf',
       },
       {
-      	image: 'https://seeutest.duckdns.org/images/static/google.jpg',
+      	image: 'https://seeu-applets.seeu-edu.com/images/static/google.jpg',
       	title: 'A同学',
       	subtitle: 'Software Engineer',
       	tag: '全职',
@@ -68,7 +68,7 @@ export const companySubList = [
 
 export const universitySubList = [
   {
-  	image: 'https://seeutest.duckdns.org/images/static/google.jpg',
+  	image: 'https://seeu-applets.seeu-edu.com/images/static/google.jpg',
   	title: 'W同学',
   	//subtitle: 'Software Engineer',
   	tag: '全职',
@@ -76,7 +76,7 @@ export const universitySubList = [
   	file: '/backend/pdfs/google.pdf',
     },
     {
-  	image: 'https://seeutest.duckdns.org/images/static/google.jpg',
+  	image: 'https://seeu-applets.seeu-edu.com/images/static/google.jpg',
   	title: 'L同学',
   	//subtitle: 'Senior Data Scientist',
   	tag: '实习',
@@ -84,7 +84,7 @@ export const universitySubList = [
   	file: '/backend/pdfs/google.pdf',
     },
     {
-  	image: 'https://seeutest.duckdns.org/images/static/google.jpg',
+  	image: 'https://seeu-applets.seeu-edu.com/images/static/google.jpg',
   	title: 'X同学',
   	//subtitle: 'Software Engineer',
   	tag: '实习',
@@ -92,7 +92,7 @@ export const universitySubList = [
   	file: '/backend/pdfs/google.pdf',
     },
     {
-    	image: 'https://seeutest.duckdns.org/images/static/google.jpg',
+    	image: 'https://seeu-applets.seeu-edu.com/images/static/google.jpg',
     	title: 'T同学',
     	//subtitle: 'Software Engineer',
     	tag: '实习',
@@ -100,7 +100,7 @@ export const universitySubList = [
     	file: '/backend/pdfs/meta.pdf',
     },
     {
-    	image: 'https://seeutest.duckdns.org/images/static/google.jpg',
+    	image: 'https://seeu-applets.seeu-edu.com/images/static/google.jpg',
     	title: 'M同学',
     	//subtitle: 'Software Engineer',
     	tag: '实习',
@@ -108,7 +108,7 @@ export const universitySubList = [
     	file: '/backend/pdfs/meta.pdf',
     },
     {
-    	image: 'https://seeutest.duckdns.org/images/static/google.jpg',
+    	image: 'https://seeu-applets.seeu-edu.com/images/static/google.jpg',
     	title: 'C同学',
     	//subtitle: 'Software Engineer',
     	tag: '实习',
@@ -116,7 +116,7 @@ export const universitySubList = [
     	file: '/backend/pdfs/meta.pdf',
     },
     {
-    	image: 'https://seeutest.duckdns.org/images/static/google.jpg',
+    	image: 'https://seeu-applets.seeu-edu.com/images/static/google.jpg',
     	title: 'D同学',
     	//subtitle: 'Software Engineer',
     	tag: '实习',
@@ -124,7 +124,7 @@ export const universitySubList = [
     	file: '/backend/pdfs/meta.pdf',
     },
     {
-    	image: 'https://seeutest.duckdns.org/images/static/google.jpg',
+    	image: 'https://seeu-applets.seeu-edu.com/images/static/google.jpg',
     	title: 'A同学',
     	//subtitle: 'Software Engineer',
     	tag: '全职',

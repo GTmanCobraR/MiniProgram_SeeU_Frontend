@@ -1,7 +1,7 @@
 <template>
   <view class="container">
     <view v-if="isReady()" class="top">
-      <image src="https://seeutest.duckdns.org/images/static/course_image.jpg" class="logo-image"></image>
+      <image src="https://seeu-applets.seeu-edu.com/images/static/course_image.jpg" class="logo-image"></image>
     </view>
     <view v-if="isReady()" class="search-bar">
       <input class="search-input" type="text" placeholder="搜索课程" v-model="searchQuery" @confirm="onSearch" />

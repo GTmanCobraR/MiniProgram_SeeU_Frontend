@@ -1,6 +1,6 @@
 export const universityDetailList = [
   {
-    image: 'https://seeutest.duckdns.org/images/static/images/university_logo.png',
+    image: 'https://seeu-applets.seeu-edu.com/images/static/images/university_logo.png',
     title: '研究生院校名称研究生院校名称',
     universityName: '研究生院校名称',
     userName: '某某某',

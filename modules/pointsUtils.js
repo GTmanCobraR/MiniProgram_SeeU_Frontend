@@ -41,7 +41,7 @@ export async function addPoints(op, subject, memberId, token){
 	
 	try {
 		const res = await requestWithToken(
-		  `https://seeutest.duckdns.org/seeuapp/userLog/add?opName=${opId}&memberId=${memberId}`,
+		  `https://seeu-applets.seeu-edu.com/v2/seeuapp/userLog/add?opName=${opId}&memberId=${memberId}`,
 		  'POST',
 		  {},
 		  await getToken()
@@ -68,7 +68,7 @@ export async function addPoints(op, subject, memberId, token){
 	
 	try {
 		const res = await requestWithToken(
-		  `https://seeutest.duckdns.org/seeuapp/operation/points/${op}`,
+		  `https://seeu-applets.seeu-edu.com/v2/seeuapp/operation/points/${op}`,
 		  'GET',
 		  {},
 		  await getToken()
@@ -88,7 +88,7 @@ export async function addPoints(op, subject, memberId, token){
 	
 	try {
 		const res = await requestWithToken(
-		  `https://seeutest.duckdns.org/seeuapp/points/add?memberId=${memberId}&points=${points}`,
+		  `https://seeu-applets.seeu-edu.com/v2/seeuapp/points/add?memberId=${memberId}&points=${points}`,
 		  'POST',
 		  {},
 		  await getToken()
@@ -127,7 +127,7 @@ export async function getPoints(memberId, token){
 	console.log("获取积分中")
 	try {
 		const res = await requestWithToken(
-		  `https://seeutest.duckdns.org/seeuapp/points/get?memberId=${memberId}`,
+		  `https://seeu-applets.seeu-edu.com/v2/seeuapp/points/get?memberId=${memberId}`,
 		  'GET',
 		  {},
 		  await getToken()
@@ -175,7 +175,7 @@ export async function addOps(opName, points, memberId, token){
 	
 	try {
 		const res = await requestWithToken(
-		  `https://seeutest.duckdns.org/seeuapp/operation/add?opName=${opName}&points=${points}`,
+		  `https://seeu-applets.seeu-edu.com/v2/seeuapp/operation/add?opName=${opName}&points=${points}`,
 		  'POST',
 		  {},
 		  await getToken()

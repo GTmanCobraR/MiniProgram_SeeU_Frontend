@@ -38,7 +38,7 @@
         </view>
         
         <!-- QR Code Image Upload Section -->
-        <view class="image-upload-section">
+        <!-- <view class="image-upload-section">
           <text class="input-label">二维码图片：</text>
           <button class="select-image-button" @tap="selectQRCodeImage">选择二维码图片</button>
           <view v-if="displayQRCodeImage && displayQRCodeImage.trim()" class="image-preview">
@@ -54,9 +54,12 @@
               {{ getImageSourceText('qr') }}
             </text>
           </view>
-        </view>
+        </view> -->
         
-        <input v-model="newStream.title" placeholder="直播标题" class="input" />
+        <view class="input-with-counter">
+          <input v-model="newStream.title" placeholder="直播标题" class="input" maxlength="16" />
+          <text class="char-counter">{{ newStream.title.length }}/16</text>
+        </view>
         <textarea v-model="newStream.description" placeholder="直播描述" class="textarea" />
         <input v-model="newStream.pointsReward" placeholder="扫码积分奖励" type="number" class="input" />
         <input v-model="newStream.sharePointsReward" placeholder="分享积分奖励" type="number" class="input" />
@@ -112,7 +115,8 @@
             <text class="stream-status">状态: {{ stream.status || 'upcoming' }}</text>
           </view>
           <view class="stream-actions">
-            <button @tap="editStream(stream)" class="edit-btn">编辑</button>
+			<!-- Removed edit button due to it not being implemented -->
+            <!-- <button @tap="editStream(stream)" class="edit-btn">编辑</button> -->
             <button @tap="deleteStream(stream.id || stream.liveId)" class="delete-btn">删除</button>
           </view>
         </view>
@@ -159,7 +163,7 @@ export default {
       tempQRCodeImagePath: '', // Temporary QR code image path
       hasCoverImageChanged: false, // Mark if cover image has changed
       hasQRCodeImageChanged: false, // Mark if QR code image has changed
-      baseUrl: 'https://seeutest.duckdns.org/seeuapp',
+      baseUrl: 'https://seeu-applets.seeu-edu.com/v2/seeuapp',
       // Local temp file storage for downloaded images
       imageCache: {}, // Cache downloaded images to avoid repeated downloads
       downloadedCoverImagePath: '', // Downloaded cover image local path
@@ -235,7 +239,7 @@ export default {
         
         try {
           const res = await requestWithToken(
-            `https://seeutest.duckdns.org/seeuapp/admin/check?email=${email}`,
+            `https://seeu-applets.seeu-edu.com/v2/seeuapp/admin/check?email=${email}`,
             'POST',
             {},
             token
@@ -737,14 +741,14 @@ export default {
       this.imageCache = {};
     },
     
-    editStream(stream) {
-      // For now, just show the stream details
-      uni.showModal({
-        title: '编辑直播',
-        content: `标题: ${stream.title}\n描述: ${stream.description}\n积分: ${stream.pointsReward}`,
-        showCancel: false
-      });
-    },
+    // editStream(stream) {
+    //   // For now, just show the stream details
+    //   uni.showModal({
+    //     title: '编辑直播',
+    //     content: `标题: ${stream.title}\n描述: ${stream.description}\n积分: ${stream.pointsReward}`,
+    //     showCancel: false
+    //   });
+    // },
     
     async deleteStream(liveId) {
       try {
@@ -1225,6 +1229,11 @@ export default {
   display: block;
 }
 
+.input-with-counter {
+  position: relative;
+  margin-bottom: 10px;
+}
+
 .input, .textarea {
   width: 100%;
   padding: 10px;
@@ -1232,6 +1241,16 @@ export default {
   border-radius: 5px;
   margin-bottom: 10px;
   font-size: 14px;
+}
+
+.char-counter {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  color: #999;
+  pointer-events: none;
 }
 
 .textarea {

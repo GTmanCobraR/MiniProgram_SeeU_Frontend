@@ -1,7 +1,7 @@
 <template>
   <view class="container">
     <!-- Background image covering entire page -->
-    <image src="https://seeutest.duckdns.org/images/static/backgroundLive.png" class="background-image" mode="aspectFill" @load="onBackgroundImageLoad" @error="onBackgroundImageError" />
+    <image src="https://seeu-applets.seeu-edu.com/images/static/backgroundLive.png" class="background-image" mode="aspectFill" @load="onBackgroundImageLoad" @error="onBackgroundImageError" />
     
     <!-- QR Code Rectangle -->
     <view class="qr-container">
@@ -25,12 +25,12 @@
     
     <!-- SeeU Logo -->
     <view class="logo-container">
-      <image src="https://seeutest.duckdns.org/images/static/seeuLogo.jpg" class="seeu-logo" mode="aspectFit" @load="onLogoLoad" @error="onLogoError" />
+      <image src="https://seeu-applets.seeu-edu.com/images/static/seeuLogo.jpg" class="seeu-logo" mode="aspectFit" @load="onLogoLoad" @error="onLogoError" />
     </view>
     
     <!-- Bottom Border Decoration -->
     <view class="bottom-decoration">
-      <image src="https://seeutest.duckdns.org/images/static/Frame 2001.png" class="bottom-frame" mode="aspectFill" @load="onBottomFrameLoad" @error="onBottomFrameError" />
+      <image src="https://seeu-applets.seeu-edu.com/images/static/Frame 2001.png" class="bottom-frame" mode="aspectFill" @load="onBottomFrameLoad" @error="onBottomFrameError" />
     </view>
     
     <!-- 管理按钮 -->
@@ -80,7 +80,7 @@ export default {
       // Priority 2: direct URL loading with cache busting (like liveList)
       if (this.qrCodeImageUrl && this.qrCodeImageUrl.startsWith('/files/')) {
         const timestamp = new Date().getTime();
-        const directUrl = `https://seeutest.duckdns.org/seeuapp${this.qrCodeImageUrl}?t=${timestamp}`;
+        const directUrl = `https://seeu-applets.seeu-edu.com/v2/seeuapp${this.qrCodeImageUrl}?t=${timestamp}`;
         
         // Pre-test the URL
         this.preTestQRCodeUrl(directUrl);
@@ -125,7 +125,7 @@ export default {
       title: this.liveStream ? this.liveStream.title : '精彩直播',
       desc: this.liveStream ? this.liveStream.description : '快来观看精彩直播！',
       path: `/pages/liveReservationDetail/liveReservationDetail?liveId=${this.liveId}`,
-      imageUrl: this.liveStream ? this.liveStream.coverImage : 'https://seeutest.duckdns.org/images/static/backgroundLive.png'
+      imageUrl: this.liveStream ? this.liveStream.coverImage : 'https://seeu-applets.seeu-edu.com/images/static/backgroundLive.png'
     };
   },
   methods: {
@@ -214,7 +214,7 @@ export default {
         }
         
         // Convert relative URL to full backend URL
-        const fullUrl = `https://seeutest.duckdns.org/seeuapp${relativeUrl}`;
+        const fullUrl = `https://seeu-applets.seeu-edu.com/v2/seeuapp${relativeUrl}`;
         console.log(`Full URL for download:`, fullUrl);
         
         // Get authentication token
@@ -276,7 +276,7 @@ export default {
         
         // Final fallback to static images (only for cover images)
         if (type === 'cover') {
-          this.tempCoverImagePath = 'https://seeutest.duckdns.org/images/static/popularLive.jpg';
+          this.tempCoverImagePath = 'https://seeu-applets.seeu-edu.com/images/static/popularLive.jpg';
         }
         // No fallback for QR code images - let the container show as blank
       }
@@ -296,7 +296,7 @@ export default {
       try {
         const token = await this.getToken();
         const response = await requestWithToken(
-          `https://seeutest.duckdns.org/seeuapp/livestream/detail/${this.liveId}`,
+          `https://seeu-applets.seeu-edu.com/v2/seeuapp/livestream/detail/${this.liveId}`,
           'GET',
           {},
           token
@@ -409,7 +409,7 @@ export default {
         
         // Use a GET request to check status without awarding points
         const response = await requestWithToken(
-          `https://seeutest.duckdns.org/seeuapp/userLog/check?opName=${opId}&memberId=${this.memberId}`,
+          `https://seeu-applets.seeu-edu.com/v2/seeuapp/userLog/check?opName=${opId}&memberId=${this.memberId}`,
           'GET',
           {},
           token
@@ -445,7 +445,7 @@ export default {
         
         // Use a GET request to check status without awarding points
         const response = await requestWithToken(
-          `https://seeutest.duckdns.org/seeuapp/userLog/check?opName=${opId}&memberId=${this.memberId}`,
+          `https://seeu-applets.seeu-edu.com/v2/seeuapp/userLog/check?opName=${opId}&memberId=${this.memberId}`,
           'GET',
           {},
           token
@@ -479,7 +479,7 @@ export default {
 		  
         const token = await this.getToken();
         const response = await requestWithToken(
-          `https://seeutest.duckdns.org/seeuapp/livestream/reservation/check?memberId=${this.memberId}&liveStreamId=${this.liveId}`,
+          `https://seeu-applets.seeu-edu.com/v2/seeuapp/livestream/reservation/check?memberId=${this.memberId}&liveStreamId=${this.liveId}`,
           'GET',
           {},
           token
@@ -603,7 +603,7 @@ export default {
       try {
         const token = await this.getToken();
         // Send memberId and liveStreamId as query parameters
-        const url = `https://seeutest.duckdns.org/seeuapp/livestream/reservation/complete?memberId=${this.memberId}&liveStreamId=${this.liveId}`;
+        const url = `https://seeu-applets.seeu-edu.com/v2/seeuapp/livestream/reservation/complete?memberId=${this.memberId}&liveStreamId=${this.liveId}`;
         const response = await requestWithToken(
           url,
           'POST',
@@ -680,7 +680,7 @@ export default {
     
     onBottomFrameError(e) {
       console.error('Bottom frame loading failed:', e);
-      console.log('Frame file path: https://seeutest.duckdns.org/images/static/Frame 2001.png');
+      console.log('Frame file path: https://seeu-applets.seeu-edu.com/images/static/Frame 2001.png');
     },
     
     async handleSharePoints() {
@@ -787,7 +787,7 @@ export default {
       
       try {
         const res = await requestWithToken(
-          `https://seeutest.duckdns.org/seeuapp/admin/check?email=${email}`,
+          `https://seeu-applets.seeu-edu.com/v2/seeuapp/admin/check?email=${email}`,
           'POST',
           {},
           token

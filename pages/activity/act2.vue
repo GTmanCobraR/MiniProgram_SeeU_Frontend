@@ -1,10 +1,10 @@
 <template>
   <view class="redirecting">
     <view class="content">
-      <image class="character" src="https://seeutest.duckdns.org/images/static/images/character2.png" mode="widthFix" />
+      <image class="character" src="https://seeu-applets.seeu-edu.com/images/static/images/character2.png" mode="widthFix" />
       <text class="text">正在前往线下活动</text>
     </view>
-    <image class="logo" src="https://seeutest.duckdns.org/images/static/icons/seeu.png" mode="widthFix" />
+    <image class="logo" src="https://seeu-applets.seeu-edu.com/images/static/icons/seeu.png" mode="widthFix" />
   </view>
 </template>
 

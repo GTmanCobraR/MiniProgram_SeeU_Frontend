@@ -25,22 +25,22 @@
         
         <view class="card-content">
           <view class="info-row">
-            <text class="info-label">📱 手机号：</text>
+            <text class="info-label"> 手机号：</text>
             <text class="info-value">{{ item.phone || '未填写' }}</text>
           </view>
           
           <view class="info-row">
-            <text class="info-label">🏫 学校：</text>
+            <text class="info-label"> 学校：</text>
             <text class="info-value">{{ item.school || '未填写' }}</text>
           </view>
           
           <view class="info-row">
-            <text class="info-label">📚 专业：</text>
+            <text class="info-label"> 专业：</text>
             <text class="info-value">{{ item.major || '未填写' }}</text>
           </view>
           
           <view class="info-row">
-            <text class="info-label">🎓 年级：</text>
+            <text class="info-label"> 年级：</text>
             <text class="info-value">{{ item.grade || '未填写' }}</text>
           </view>
         </view>
@@ -48,7 +48,7 @@
 
       <!-- 空状态 -->
       <view v-if="signupList.length === 0" class="empty-state">
-        <view class="empty-icon">📋</view>
+        <view class="empty-icon"></view>
         <text class="empty-text">暂无报名信息</text>
         <text class="empty-subtext">当前活动还没有人报名</text>
       </view>
@@ -84,7 +84,7 @@ export default {
       eventID: '',
       signupList: [],
       loading: false,
-      baseUrl: 'https://seeutest.duckdns.org/seeuapp'
+      baseUrl: 'https://seeu-applets.seeu-edu.com/v2/seeuapp'
     };
   },
   

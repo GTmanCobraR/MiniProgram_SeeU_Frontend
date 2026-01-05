@@ -24,7 +24,7 @@
 			<view class="vip-entry" @tap="goToVipFormPage">
 			  <image
 				class="vip-image"
-				src="https://seeutest.duckdns.org/images/static/vip-banner.jpg"
+				src="https://seeu-applets.seeu-edu.com/images/static/vip-banner.jpg"
 				mode="widthFix"
 			  ></image>
 			</view>

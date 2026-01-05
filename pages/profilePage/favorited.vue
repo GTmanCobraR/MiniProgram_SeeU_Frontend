@@ -149,7 +149,7 @@ export default {
 	  var token = await this.getToken();
 	  try {
 		const res = await requestWithToken(
-		  `https://seeutest.duckdns.org/seeuapp/collection/${param}?memberId=${memberId}&exampleId=${exampleId}`,
+		  `https://seeu-applets.seeu-edu.com/v2/seeuapp/collection/${param}?memberId=${memberId}&exampleId=${exampleId}`,
 		  'POST',
 		  {},
 		  token
@@ -170,7 +170,7 @@ export default {
 	  var token = await this.getToken();
 	  try {
 		const res = await requestWithToken(
-		  `https://seeutest.duckdns.org/seeuapp/collection/${param}?memberId=${memberId}&exampleId=${exampleId}`,
+		  `https://seeu-applets.seeu-edu.com/v2/seeuapp/collection/${param}?memberId=${memberId}&exampleId=${exampleId}`,
 		  'DELETE',
 		  {},
 		  token
@@ -221,7 +221,7 @@ export default {
 	  try {
 		// fetch job favorites
 		const jobRes = await requestWithToken(
-		  `https://seeutest.duckdns.org/seeuapp/collection/job/${this.memberId}`,
+		  `https://seeu-applets.seeu-edu.com/v2/seeuapp/collection/job/${this.memberId}`,
 		  "GET",
 		  {},
 		  token
@@ -237,7 +237,7 @@ export default {
 
 		// fetch study favorites (swap in your real endpoint if different)
 		const studyRes = await requestWithToken(
-		  `https://seeutest.duckdns.org/seeuapp/collection/graduate/${this.memberId}`,
+		  `https://seeu-applets.seeu-edu.com/v2/seeuapp/collection/graduate/${this.memberId}`,
 		  "GET",
 		  {},
 		  token

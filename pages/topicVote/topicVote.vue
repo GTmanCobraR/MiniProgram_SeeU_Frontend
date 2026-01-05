@@ -31,67 +31,91 @@
       <view class="single-topic">
         <!-- 标题 + 日期 -->
         <view class="topic-header">
-          <view class="header-row">
-            <view class="header-left">
-              <view v-if="!isEditing || isPreviewing">
-                <text class="topic-title">{{ editableTitle || '暂无标题' }}</text>
-              </view>
-              <view v-else>
-                <input v-model="editableTitle" class="topic-title-input" placeholder="请输入标题" />
-              </view>
+          <!-- 编辑按钮区域 - 置顶右侧 -->
+          <view class="edit-controls-top">
+            <view v-if="isAdmin && !isEditing && !isPreviewing" class="edit-inline-controls">
+              <button class="edit-small-button" @tap="startEditing">编辑</button>
             </view>
 
-            <view class="header-right">
-              <view v-if="!isEditing || isPreviewing">
-                <text class="topic-date">{{ editableDate || '暂无截止日期' }} 截止</text>
-              </view>
-              <view v-else>
-                <!-- 日期选择器 -->
-                <view class="date-input-group">
-                  <view class="date-selectors">
-                    <picker 
-                      mode="selector" 
-                      :range="years" 
-                      :value="selectedYearIndex" 
-                      @change="onYearChange"
-                      class="date-picker"
-                    >
-                      <view class="picker-text">{{ selectedYear || '年' }}</view>
-                    </picker>
-                    
-                    <picker 
-                      mode="selector" 
-                      :range="months" 
-                      :value="selectedMonthIndex" 
-                      @change="onMonthChange"
-                      class="date-picker"
-                    >
-                      <view class="picker-text">{{ selectedMonth || '月' }}</view>
-                    </picker>
-                    
-                    <picker 
-                      mode="selector" 
-                      :range="days" 
-                      :value="selectedDayIndex" 
-                      @change="onDayChange"
-                      class="date-picker"
-                    >
-                      <view class="picker-text">{{ selectedDay || '日' }}</view>
-                    </picker>
+            <view v-if="isAdmin && isEditing" class="edit-inline-controls">
+              <button v-if="!isPreviewing" class="edit-small-button" @tap="previewChanges">预览</button>
+              <button v-else class="edit-small-button" @tap="saveChanges">保存</button>
+              <button class="cancel-button" @tap="cancelEditing">取消</button>
+            </view>
+          </view>
+          
+          <!-- 标题区域 - 全宽显示 -->
+          <view class="title-section">
+            <view v-if="!isEditing || isPreviewing">
+              <text class="topic-title">{{ editableTitle || '暂无标题' }}</text>
+            </view>
+            <view v-else class="title-edit-container">
+              <text class="input-section-label">投票标题</text>
+              <input 
+                v-model="editableTitle" 
+                class="topic-title-input-direct" 
+                placeholder="点击这里输入投票标题"
+                placeholder-class="title-placeholder"
+              />
+            </view>
+          </view>
+          
+          <!-- 日期行 - 单独一行，在编辑和非编辑模式下 -->
+          <view class="date-row">
+            <view v-if="!isEditing || isPreviewing">
+              <text class="topic-date">{{ editableDate || '暂无截止日期' }} 截止</text>
+            </view>
+            <view v-else class="date-edit-section">
+              <!-- 日期选择器 - 垂直布局，每个占满宽度 -->
+              <text class="date-section-label">截止日期</text>
+              
+              <picker 
+                mode="selector" 
+                :range="years" 
+                :value="selectedYearIndex" 
+                @change="onYearChange"
+                class="date-picker-full"
+              >
+                <view class="picker-item-full">
+                  <text class="picker-label">年份</text>
+                  <view class="picker-value-wrapper">
+                    <text class="picker-value">{{ selectedYear || '请选择' }}</text>
+                    <text class="picker-arrow">›</text>
                   </view>
                 </view>
-              </view>
-
-              <!-- 编辑按钮 -->
-              <view v-if="isAdmin && !isEditing && !isPreviewing" class="edit-inline-controls">
-                <button class="edit-small-button" @tap="startEditing">编辑</button>
-              </view>
-
-              <view v-if="isAdmin && isEditing" class="edit-inline-controls">
-                <button v-if="!isPreviewing" class="edit-small-button" @tap="previewChanges">预览</button>
-                <button v-else class="edit-small-button" @tap="saveChanges">保存</button>
-                <button class="cancel-button" @tap="cancelEditing">取消</button>
-              </view>
+              </picker>
+              
+              <picker 
+                mode="selector" 
+                :range="months" 
+                :value="selectedMonthIndex" 
+                @change="onMonthChange"
+                class="date-picker-full"
+              >
+                <view class="picker-item-full">
+                  <text class="picker-label">月份</text>
+                  <view class="picker-value-wrapper">
+                    <text class="picker-value">{{ selectedMonth || '请选择' }}</text>
+                    <text class="picker-arrow">›</text>
+                  </view>
+                </view>
+              </picker>
+              
+              <picker 
+                mode="selector" 
+                :range="days" 
+                :value="selectedDayIndex" 
+                @change="onDayChange"
+                class="date-picker-full"
+              >
+                <view class="picker-item-full">
+                  <text class="picker-label">日期</text>
+                  <view class="picker-value-wrapper">
+                    <text class="picker-value">{{ selectedDay || '请选择' }}</text>
+                    <text class="picker-arrow">›</text>
+                  </view>
+                </view>
+              </picker>
             </view>
           </view>
         </view>
@@ -102,8 +126,16 @@
         <view v-if="!isEditing || isPreviewing">
           <text class="topic-description">{{ editableDescription || '暂无描述' }}</text>
         </view>
-        <view v-else>
-          <textarea v-model="editableDescription" class="topic-description" placeholder="请输入描述" rows="5" />
+        <view v-else class="description-edit-container">
+          <text class="input-section-label">投票描述</text>
+          <textarea 
+            v-model="editableDescription" 
+            class="topic-description-input-direct" 
+            placeholder="点击这里输入投票的详细描述，告诉用户这次投票的目的和要求..."
+            placeholder-class="description-placeholder"
+            auto-height
+            :maxlength="-1"
+          />
         </view>
 
         <view class="triple-spacer"></view>
@@ -153,7 +185,7 @@
 		
 		<!-- seeu logo 紧跟在选项列表之后，自动跟随动态内容 -->
 		<view class="seeu-logo-wrapper">
-		          <image class="seeu-logo" src="https://seeutest.duckdns.org/images/static/icons/seeu.png" mode="widthFix" />
+		          <image class="seeu-logo" src="https://seeu-applets.seeu-edu.com/images/static/icons/seeu.png" mode="widthFix" />
 		</view>
 
         <view class="bottom-spacer"></view>
@@ -169,7 +201,7 @@
     <view class="popup-container">
       <!-- 关闭按钮 -->
       <image 
-        src="https://seeutest.duckdns.org/images/static/icons/close.png" 
+        src="https://seeu-applets.seeu-edu.com/images/static/icons/close.png" 
         class="popup-close" 
         @tap="closePointPopup"
       />
@@ -184,7 +216,7 @@
   
       <!-- 插画 -->
       <image 
-        src="https://seeutest.duckdns.org/images/static/images/character4.png" 
+        src="https://seeu-applets.seeu-edu.com/images/static/images/character4.png" 
         class="character-points" 
         mode="aspectFit"
       />
@@ -241,7 +273,7 @@ export default {
 	  pointPopupSubtitle: '',
 	  pointPopupCallback: null,
 		  
-      baseUrl: 'https://seeutest.duckdns.org/seeuapp',
+      baseUrl: 'https://seeu-applets.seeu-edu.com/v2/seeuapp',
       hasVoted: false, // 新增：标记用户是否已经投票
       // 日期选择器数据
       years: [],
@@ -276,7 +308,7 @@ export default {
   },
   
   onShow() {
-      // 👇 新增：判断是否可返回
+      //  新增：判断是否可返回
       const pages = getCurrentPages();
       this.canGoBack = pages && pages.length > 1;
   },
@@ -298,7 +330,7 @@ export default {
 	  
 	  try {
 	    const res = await requestWithToken(
-	      `https://seeutest.duckdns.org/seeuapp/admin/check?email=${email}`,
+	      `https://seeu-applets.seeu-edu.com/v2/seeuapp/admin/check?email=${email}`,
 	      'POST',
 	      {},
 	      token
@@ -865,24 +897,22 @@ export default {
 .topic-header {
   width: 100%;
   margin-bottom: 20rpx;
+  position: relative;
 }
 
-.header-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20rpx;
-  flex-wrap: wrap;
+.edit-controls-top {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 100;
+  pointer-events: auto;
 }
 
-.header-left {
-  flex: 1;
-}
-
-.header-right {
-  display: flex;
-  align-items: center;
-  gap: 20rpx;
+.title-section {
+  width: 100%;
+  margin-bottom: 20rpx;
+  position: relative;
+  z-index: 1;
 }
 
 .topic-title {
@@ -899,35 +929,88 @@ export default {
   color: #888;
 }
 
-.topic-title-input,
-.topic-date-input {
-  font-size: 32rpx;
-  padding: 10rpx 20rpx;
-  border: 1px solid #ccc;
-  border-radius: 8rpx;
-  min-width: 200rpx;
+/* 标题编辑容器 */
+.title-edit-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+  margin-top: 80rpx;
+  margin-bottom: 40rpx;
+}
+
+.input-section-label {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #000;
+  padding-left: 8rpx;
+}
+
+/* 直接样式的标题输入框 - 无wrapper */
+.topic-title-input-direct {
+  width: 100%;
+  background-color: #fff;
+  border: 4rpx solid #e0e0e0;
+  border-radius: 20rpx;
+  padding: 50rpx 50rpx;
+  min-height: 180rpx;
+  box-sizing: border-box;
+  font-size: 42rpx;
+  font-weight: 600;
+  color: #000;
+  line-height: 1.5;
+  transition: all 0.3s ease;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+  display: block;
+}
+
+.topic-title-input-direct:focus {
+  background-color: #f5f5ff;
+  border-color: #7d79ff;
+  border-width: 5rpx;
+  box-shadow: 0 8rpx 24rpx rgba(125, 121, 255, 0.2);
+  outline: none;
+}
+
+.title-placeholder {
+  color: #999;
+  font-weight: 400;
+  font-size: 36rpx;
 }
 
 .edit-inline-controls {
   display: flex;
   align-items: center;
-  gap: 10rpx;
+  gap: 12rpx;
 }
 
 .edit-small-button {
   background-color: #ff9500;
   color: white;
-  font-size: 26rpx;
-  padding: 10rpx 20rpx;
-  border-radius: 30rpx;
+  font-size: 28rpx;
+  padding: 16rpx 32rpx;
+  border-radius: 40rpx;
+  font-weight: 600;
+  box-shadow: 0 4rpx 12rpx rgba(255, 149, 0, 0.3);
+}
+
+.edit-small-button:active {
+  opacity: 0.8;
+  transform: scale(0.95);
 }
 
 .cancel-button {
   background-color: #8e8e93;
   color: white;
-  font-size: 26rpx;
-  padding: 10rpx 20rpx;
-  border-radius: 30rpx;
+  font-size: 28rpx;
+  padding: 16rpx 32rpx;
+  border-radius: 40rpx;
+  font-weight: 600;
+}
+
+.cancel-button:active {
+  opacity: 0.8;
+  transform: scale(0.95);
 }
 
 .vote-hint {
@@ -943,14 +1026,57 @@ export default {
 
 .topic-description {
   font-family: "PingFang SC", "Helvetica", "Arial", sans-serif;
-  font-weight: 500;          /* Medium = 500 */
-  font-size: 28rpx;          /* 14px ≈ 28rpx */
-  line-height: 100%;         /* 100% = tight line spacing */
+  font-weight: 500;
+  font-size: 28rpx;
+  line-height: 1.6;
   letter-spacing: 0rpx;
   color: #000000;
   text-align: justify;
   width: 100%;
   margin-top: 20rpx;
+}
+
+/* 描述编辑容器 */
+.description-edit-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+  margin-top: 40rpx;
+  margin-bottom: 40rpx;
+}
+
+/* 直接样式的描述输入框 - 无wrapper */
+.topic-description-input-direct {
+  width: 100%;
+  background-color: #fff;
+  border: 4rpx solid #e0e0e0;
+  border-radius: 20rpx;
+  padding: 50rpx 50rpx;
+  min-height: 300rpx;
+  box-sizing: border-box;
+  font-size: 36rpx;
+  font-weight: 400;
+  color: #000;
+  line-height: 1.7;
+  transition: all 0.3s ease;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+  display: block;
+}
+
+.topic-description-input-direct:focus {
+  background-color: #f5f5ff;
+  border-color: #7d79ff;
+  border-width: 5rpx;
+  box-shadow: 0 8rpx 24rpx rgba(125, 121, 255, 0.2);
+  outline: none;
+}
+
+.description-placeholder {
+  color: #999;
+  font-weight: 400;
+  font-size: 32rpx;
+  line-height: 1.6;
 }
 
 .triple-spacer {
@@ -1211,35 +1337,78 @@ export default {
   box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.15);
 }
 
-/* 日期选择器样式 */
-.date-input-group {
-  display: flex;
-  align-items: center;
-  gap: 10rpx;
-}
-
-.date-selectors {
-  display: flex;
-  align-items: center;
-  gap: 8rpx;
-}
-
-.date-picker {
-  background-color: #fff;
-  border: 1rpx solid #ddd;
-  border-radius: 8rpx;
-  padding: 8rpx 12rpx;
-  min-height: 60rpx;
-  display: flex;
-  align-items: center;
-  min-width: 80rpx;
-}
-
-.picker-text {
-  font-size: 24rpx;
-  color: #333;
-  text-align: center;
+/* 日期行样式 */
+.date-row {
+  margin-top: 40rpx;
+  margin-bottom: 40rpx;
   width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+/* 日期编辑区域 - 垂直布局 */
+.date-edit-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+}
+
+.date-section-label {
+  font-size: 34rpx;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 10rpx;
+}
+
+/* 全宽日期选择器 */
+.date-picker-full {
+  width: 100%;
+  background-color: #fff;
+  border: 2rpx solid #e0e0e0;
+  border-radius: 16rpx;
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.date-picker-full:active {
+  background-color: #f5f5ff;
+  border-color: #7d79ff;
+  transform: scale(0.98);
+}
+
+.picker-item-full {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 32rpx 40rpx;
+  min-height: 120rpx;
+  box-sizing: border-box;
+}
+
+.picker-label {
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #666;
+}
+
+.picker-value-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+}
+
+.picker-value {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #000;
+}
+
+.picker-arrow {
+  font-size: 60rpx;
+  color: #999;
+  line-height: 1;
+  font-weight: 300;
 }
 
 /* 顶部渐变层（颜色改为 #8ED2FF -> 透明） */

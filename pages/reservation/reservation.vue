@@ -34,7 +34,7 @@
       >
         <image
           v-if="selectedTimeSlot === time"
-          src="https://seeutest.duckdns.org/images/static/blue_checkmark.svg.png"
+          src="https://seeu-applets.seeu-edu.com/images/static/blue_checkmark.svg.png"
           class="checkbox checked"
         />
         <view v-else class="checkbox" :class="{ 'grayed-out-checkbox': !timeSlots.includes(time) }"></view>
@@ -53,7 +53,7 @@
       >
         <image
           v-if="selectedReservationType === type"
-          src="https://seeutest.duckdns.org/images/static/blue_checkmark.svg.png"
+          src="https://seeu-applets.seeu-edu.com/images/static/blue_checkmark.svg.png"
           class="checkbox checked"
         />
         <view v-else class="checkbox"></view>

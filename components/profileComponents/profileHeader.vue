@@ -26,7 +26,7 @@
         <view class="profile-info">
           <Container backgroundColor="transparent" boxShadow="none" flexDirection="row" justifyContent="center" alignItems="center">
             <view class="profile-name">{{ username }}</view>
-            <image v-if="showVip" src="https://seeutest.duckdns.org/images/static/vip-banner.jpg" class="vip-icon" />
+            <image v-if="showVip" src="https://seeu-applets.seeu-edu.com/images/static/vip-banner.jpg" class="vip-icon" />
           </Container>
 
           <Container backgroundColor="transparent" boxShadow="none" flexDirection="row" justifyContent="center" alignItems="center">
@@ -35,7 +35,7 @@
             </button>
           </Container>
 
-          <image v-if="showVip" src="https://seeutest.duckdns.org/images/static/vip-banner.jpg" class="vip-icon" />
+          <image v-if="showVip" src="https://seeu-applets.seeu-edu.com/images/static/vip-banner.jpg" class="vip-icon" />
         </view>
       </Container>
 

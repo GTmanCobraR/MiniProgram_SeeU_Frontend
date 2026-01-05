@@ -32,13 +32,13 @@ export default {
       this.isAdmin = (role === '管理员');
   
       // 设置最新活动图片地址
-      this.imageUrl = 'https://seeutest.duckdns.org/seeuapp/files/latest-image-stream'; // 替换为你的后端地址
+      this.imageUrl = 'https://seeu-applets.seeu-edu.com/v2/seeuapp/files/latest-image-stream'; // 替换为你的后端地址
     },
  //  onLoad(options) {
  //    // Retrieve the link from the query parameters
  //    const link = options.link;
  //    //this.imageUrl = link;
-	// this.imageUrl = 'https://seeutest.duckdns.org/seeuapp/files/latest-image-stream'; // 替换为你实际后端地址
+	// this.imageUrl = 'https://seeu-applets.seeu-edu.com/v2/seeuapp/files/latest-image-stream'; // 替换为你实际后端地址
  //  },
   methods: {
     previewPoster() {

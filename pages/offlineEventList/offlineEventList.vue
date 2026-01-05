@@ -16,7 +16,7 @@
       </scroll-view>
     </view>
 
-    <!-- 🌍 Floating planet + IP image -->
+    <!--  Floating planet + IP image -->
     <image class="planet" src="/static/decorations/planet.png" mode="aspectFit" />
     <image class="ip" src="/static/decorations/IP.png" mode="aspectFit" />
 
@@ -29,7 +29,7 @@
     <view class="activity-list">
       <block v-for="act in activities" :key="act.id">
         <view class="activity-card" @tap="goToActivity(act)">
-          <image class="cover" :src="act.cover || placeholder" mode="aspectFill" />
+          <image class="cover" :src="act.imageUrl || placeholder" mode="aspectFill" />
           <view class="info">
             <text class="title">{{ act.title }}</text>
             <text class="subtitle">{{ act.subtitle }}</text>
@@ -93,15 +93,17 @@ export default {
       const token = await this.getToken();
       try {
         const actRes = await requestWithToken(
-          `https://seeutest.duckdns.org/seeuapp/event/load`,
+          `https://seeu-applets.seeu-edu.com/v2/seeuapp/event/load`,
           'GET',
           { date: dateStr },
           token
         );
         if (actRes.code === 200) {
+		  
           const list = Array.isArray(actRes.data) ? actRes.data : [];
           const mapped = list.map(item => ({
             id: item.eventId ?? item.eventid ?? item.id ?? String(Math.random()),
+			imageUrl: item.imageUrl ?? placeholder,
             title: item.title ?? '',
             subtitle: item.details ?? item.description ?? '',
             time: [],
@@ -133,7 +135,7 @@ export default {
 .weekday { font-size: 24rpx; line-height: 1; }
 .day-number { font-size: 32rpx; font-weight: bold; line-height: 1; }
 
-/* 🌍 Planet image styles */
+/*  Planet image styles */
 .planet { 
   position: fixed;
   bottom: -110px;
@@ -145,7 +147,7 @@ export default {
   opacity: 0.9;
 }
 
-/* 🛰 IP image */
+/*  IP image */
 .ip {
   position: fixed;
   bottom: 20px;

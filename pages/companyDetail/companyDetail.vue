@@ -9,21 +9,21 @@
     <!-- User Information -->
     <view class="user-info">
       <view class="user-section">
-        <image src="https://seeutest.duckdns.org/images/static/images/person_icon.jpg" class="user-icon" />
+        <image src="https://seeu-applets.seeu-edu.com/images/static/images/person_icon.jpg" class="user-icon" />
         <view class="text-container">
           <text class="user-text">{{ item.userName }}</text>
         </view>
       </view>
       <view class="divider"></view>
       <view class="user-section">
-        <image src="https://seeutest.duckdns.org/images/static/images/book_icon.jpg" class="user-icon" />
+        <image src="https://seeu-applets.seeu-edu.com/images/static/images/book_icon.jpg" class="user-icon" />
         <view class="text-container">
           <text class="user-text">本科 · 计算机科学</text>
         </view>
       </view>
       <view class="divider"></view>
       <view class="user-section">
-        <image src="https://seeutest.duckdns.org/images/static/images/briefcase_icon.jpg" class="user-icon" />
+        <image src="https://seeu-applets.seeu-edu.com/images/static/images/briefcase_icon.jpg" class="user-icon" />
         <view class="text-container">
           <text class="user-text">{{ item.position }}</text>
         </view>
@@ -46,7 +46,7 @@
 
     <!-- Bottom Watermark -->
     <view class="watermark">
-      <image src="https://seeutest.duckdns.org/images/static/images/watermark.jpg" class="watermark-image" />
+      <image src="https://seeu-applets.seeu-edu.com/images/static/images/watermark.jpg" class="watermark-image" />
     </view>
     <view class="watermark-text-container">
       <text class="watermark-text">—— 让 OFFER 触 手 可 及 ——</text>

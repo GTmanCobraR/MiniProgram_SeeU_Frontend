@@ -483,6 +483,7 @@ export default {
   flex-direction: row;
   justify-content: space-around;
   padding: 24rpx;
+  padding-right: 64rpx;
   background: #fff;
   box-shadow: 0 -2rpx 8rpx rgba(0,0,0,0.06);
 }
@@ -504,6 +505,7 @@ export default {
   flex-direction: row;
   justify-content: space-around;
   padding: 24rpx;
+  padding-right: 64rpx;
   background: #fff;
   border-top: 1rpx solid #eee;
 }

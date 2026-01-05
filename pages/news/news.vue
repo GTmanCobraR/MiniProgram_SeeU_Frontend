@@ -14,7 +14,7 @@ export default {
   },
   onLoad() {
     uni.request({
-      url: 'https://seeutest.duckdns.org/seeuapp/news/get',
+      url: 'https://seeu-applets.seeu-edu.com/v2/seeuapp/news/get',
       method: 'GET',
       success: (res) => {
         const link = res.data?.data?.url;
@@ -49,7 +49,7 @@ export default {
 		}
 	
       uni.request({
-        url: 'https://seeutest.duckdns.org/seeuapp/news/get',
+        url: 'https://seeu-applets.seeu-edu.com/v2/seeuapp/news/get',
         method: 'GET',
 		header: {
 		  "Content-Type": "application/json",

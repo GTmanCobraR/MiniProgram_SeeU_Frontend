@@ -1,7 +1,7 @@
 <template>
   <view class="container">
     <view class="top">
-      <image src="https://seeutest.duckdns.org/images/static/interview.jpg" class="logo-image"></image>
+      <image src="https://seeu-applets.seeu-edu.com/images/static/interview.jpg" class="logo-image"></image>
     </view>
 
     <view class="flex-container">
@@ -16,7 +16,7 @@
     <view class="list">
       <view class="list-item" @tap="navigateToCourseDetail">
         <view class="left">
-          <image src="https://seeutest.duckdns.org/images/static/columbia.jpg" class="logo-image"></image>
+          <image src="https://seeu-applets.seeu-edu.com/images/static/columbia.jpg" class="logo-image"></image>
         </view>
         <view class="right">
           <text>数据职业导论/入门</text>
@@ -29,7 +29,7 @@
 
       <view class="list-item" @tap="navigateToCourseDetail">
         <view class="left">
-          <image src="https://seeutest.duckdns.org/images/static/columbia.jpg" class="logo-image"></image>
+          <image src="https://seeu-applets.seeu-edu.com/images/static/columbia.jpg" class="logo-image"></image>
         </view>
         <view class="right">
           <text>数据职业导论/入门</text>
@@ -42,7 +42,7 @@
       
       <view class="list-item" @tap="navigateToCourseDetail">
         <view class="left">
-          <image src="https://seeutest.duckdns.org/images/static/columbia.jpg" class="logo-image"></image>
+          <image src="https://seeu-applets.seeu-edu.com/images/static/columbia.jpg" class="logo-image"></image>
         </view>
         <view class="right">
           <text>数据职业导论/入门</text>
@@ -55,7 +55,7 @@
       
       <view class="list-item" @tap="navigateToCourseDetail">
         <view class="left">
-          <image src="https://seeutest.duckdns.org/images/static/columbia.jpg" class="logo-image"></image>
+          <image src="https://seeu-applets.seeu-edu.com/images/static/columbia.jpg" class="logo-image"></image>
         </view>
         <view class="right">
           <text>数据职业导论/入门</text>

@@ -27,7 +27,7 @@
             <text class="title">{{ act.title }}</text>
             <text class="subtitle">{{ act.details }}</text>
             <text class="date">{{ formatDate(act.eventTime) }}</text>
-            <text class="location" v-if="act.location">📍 {{ act.location }}</text>
+            <text class="location" v-if="act.location"> {{ act.location }}</text>
           </view>
 
           <!-- 操作区：删除按钮 -->
@@ -92,7 +92,7 @@ export default {
         
         // 获取所有活动
         const actRes = await requestWithToken(
-          `https://seeutest.duckdns.org/seeuapp/event/load`,
+          `https://seeu-applets.seeu-edu.com/v2/seeuapp/event/load`,
           "GET",
           {date: "1970-01-01"}, // 使用很早的日期来获取所有活动
           token
@@ -175,7 +175,7 @@ export default {
 	    console.log(act.eventid);
 	    // 删除当前活动
 	    const actRes = await requestWithToken(
-	      `https://seeutest.duckdns.org/seeuapp/event/deleteInformation?eventid=${act.eventid}`,
+	      `https://seeu-applets.seeu-edu.com/v2/seeuapp/event/deleteInformation?eventid=${act.eventid}`,
 	      "DELETE",
 	      {},
 	      token

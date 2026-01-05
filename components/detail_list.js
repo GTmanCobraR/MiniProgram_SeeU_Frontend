@@ -1,6 +1,6 @@
 export const companyDetailList = [
   {
-    image: 'https://seeutest.duckdns.org/images/static/images/company_logo.jpg',
+    image: 'https://seeu-applets.seeu-edu.com/images/static/images/company_logo.jpg',
     companyName: '公司名称公司名称公司名称',
     userName: 'L同学',
     position: '软件工程师（AI方向）',

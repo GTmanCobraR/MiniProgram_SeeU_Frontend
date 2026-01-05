@@ -3,7 +3,7 @@
     <view v-if="isloading">
       <view>
         <view  class='header'>
-          	<image src='https://seeutest.duckdns.org/images/static/images/watermark.jpg'></image>
+          	<image src='https://seeu-applets.seeu-edu.com/images/static/images/watermark.jpg'></image>
         </view>
         <view v-if="nickNameClicked==false" class='content'>
           <view>申请获取以下权限</view>

@@ -547,7 +547,7 @@ export default {
 	  this.universityOptions = [{ label: "全部", value: "all" }]
 	    .concat(uniqueColleges.map(name => ({ label: name, value: name })));
 	
-	  console.log('🎓 Unique School Names:', this.universityOptions);
+	  console.log(' Unique School Names:', this.universityOptions);
 	},
   },
   async mounted() {

@@ -1,6 +1,6 @@
 <template>
 	<view class="container">
-		<image src="https://seeutest.duckdns.org/images/static/background.jpg" class="background-image"></image>
+		<image src="https://seeu-applets.seeu-edu.com/images/static/background.jpg" class="background-image"></image>
 		<view class="title">
 			<text style="font-weight: bold;">{{ courseName }}</text>
 		</view>
@@ -31,7 +31,7 @@
 
 	</view>
 	<view class="logo">
-		<image src='https://seeutest.duckdns.org/images/static/images/transparent_watermark.png' class="logoimg"></image>
+		<image src='https://seeu-applets.seeu-edu.com/images/static/images/transparent_watermark.png' class="logoimg"></image>
 	</view>
 </template>
 

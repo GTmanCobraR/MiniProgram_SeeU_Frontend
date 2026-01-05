@@ -100,21 +100,21 @@
              <view class="info-heading">活动信息</view>
            
              <view class="info-line">
-               <text class="icon">🕒</text>
+               <text class="icon"></text>
                <text class="label-text">时间：</text>
                <text class="value-text">{{ formData.eventTime || '暂无时间' }}</text>
              </view>
              <view class="info-divider"></view> <!-- 横线 -->
            
              <view class="info-line">
-               <text class="icon">📍</text>
+               <text class="icon"></text>
                <text class="label-text">地点：</text>
                <text class="value-text">{{ formData.location || '暂无地点' }}</text>
              </view>
              <view class="info-divider"></view> <!-- 横线 -->
            
              <view class="info-line">
-               <text class="icon">👥</text>
+               <text class="icon"></text>
                <text class="label-text">人数：</text>
                <text class="value-text">{{ formData.maxParticipants ? formData.maxParticipants + '人' : '不限人数' }}</text>
              </view>
@@ -136,7 +136,7 @@
                type="default"
              >
                <image 
-                 src="https://seeutest.duckdns.org/images/static/icons/share.png" 
+                 src="https://seeu-applets.seeu-edu.com/images/static/icons/share.png" 
                  class="bottom-share-icon" 
                  mode="aspectFit"
                />
@@ -176,7 +176,7 @@
         
         <!-- 关闭按钮 -->
         <image 
-          src="https://seeutest.duckdns.org/images/static/icons/close.png" 
+          src="https://seeu-applets.seeu-edu.com/images/static/icons/close.png" 
           class="popup-close" 
           @tap="closePopup"
         />
@@ -186,7 +186,7 @@
     
         <!-- 中部插画 -->
         <image 
-          src="https://seeutest.duckdns.org/images/static/images/character.png" 
+          src="https://seeu-applets.seeu-edu.com/images/static/images/character.png" 
           class="popup-character" 
           mode="aspectFit"
         />
@@ -203,7 +203,7 @@
 	  <view class="popup-container">
 	    <!-- 关闭按钮 -->
 	    <image 
-	              src="https://seeutest.duckdns.org/images/static/icons/close.png" 
+	              src="https://seeu-applets.seeu-edu.com/images/static/icons/close.png" 
 	      class="popup-close" 
 	      @tap="closePointPopup"
 	    />
@@ -211,14 +211,14 @@
 	    <!-- 主标题 -->
 	    <view class="popup-title">{{ pointPopupTitle }}</view>
 	
-	    <!-- 副标题 👇 -->
+	    <!-- 副标题  -->
 	    <view class="popup-subtitle">
 	      {{ pointPopupSubtitle }}
 	    </view>
 	
 	    <!-- 插画 -->
 	    <image 
-	              src="https://seeutest.duckdns.org/images/static/images/character4.png" 
+	              src="https://seeu-applets.seeu-edu.com/images/static/images/character4.png" 
 	      class="popup-character" 
 	      mode="aspectFit"
 	    />
@@ -271,7 +271,7 @@ export default {
           selectedYear: '',
           selectedMonth: '',
           selectedDay: '',
-          baseUrl: 'https://seeutest.duckdns.org/seeuapp',
+          baseUrl: 'https://seeu-applets.seeu-edu.com/v2/seeuapp',
           tempImagePath: '',
           hasImageChanged: false,
           imageCache: {}
@@ -334,7 +334,7 @@ export default {
 	  
 	  try {
 	    const res = await requestWithToken(
-	      `https://seeutest.duckdns.org/seeuapp/admin/check?email=${email}`,
+	      `https://seeu-applets.seeu-edu.com/v2/seeuapp/admin/check?email=${email}`,
 	      'POST',
 	      {},
 	      token
@@ -420,11 +420,12 @@ export default {
     updateEventTime() {
       if (this.selectedYear && this.selectedMonth && this.selectedDay) {
         const year = parseInt(this.selectedYear, 10);
-		const month = parseInt(this.selectedMonth, 10) - 1; // JS months are 0-based
+		const month = parseInt(this.selectedMonth, 10);
 		const day = parseInt(this.selectedDay, 10);
 	
-		const dateObj = new Date(year, month, day);  
-		this.formData.eventTime = dateObj.getTime(); 
+		// Convert to epoch time (milliseconds) for backend java.sql.Date
+		const date = new Date(year, month - 1, day);
+		this.formData.eventTime = date.getTime(); 
       }
     },
     
@@ -508,15 +509,27 @@ export default {
     },
 
     cancelEditing() {
-      this.formData = JSON.parse(JSON.stringify(this.originalFormData));
-      this.isEditing = false;
-      this.isPreviewing = false;
-      this.tempImagePath = ''; // 清空临时图片
-      this.hasImageChanged = false; // 重置图片更改标记
-      
-      // 重新解析日期到选择器
-      this.parseExistingDate(this.formData.eventTime);
-    },
+	  uni.showModal({
+		title: '取消编辑',
+		content: '确认取消编辑吗？',
+		confirmText: '确认',
+		cancelText: '取消',
+		success: (res) => {
+		  if (res.confirm) {
+			// 用户点击了"确认"按钮，执行取消编辑操作
+			this.formData = JSON.parse(JSON.stringify(this.originalFormData));
+			this.isEditing = false;
+			this.isPreviewing = false;
+			this.tempImagePath = ''; // 清空临时图片
+			this.hasImageChanged = false; // 重置图片更改标记
+			
+			// 重新解析日期到选择器
+			this.parseExistingDate(this.formData.eventTime);
+		  }
+		  // 如果用户点击了"取消"按钮，则不执行任何操作，继续编辑
+		}
+	  });
+	},
 
     previewChanges() {
       const { title, details, eventTime, location } = this.formData;
@@ -800,7 +813,7 @@ export default {
 			
 			try {
 				const res = await requestWithToken(
-				  `https://seeutest.duckdns.org/seeuapp/admin/check?email=${email}`,
+				  `https://seeu-applets.seeu-edu.com/v2/seeuapp/admin/check?email=${email}`,
 				  'POST',
 				  {},
 				  token
@@ -824,11 +837,11 @@ export default {
 
     async checkSignupStatus() {
       const memberId = uni.getStorageSync('memberId');
-      console.log('🔍 开始检查报名状态');
+      console.log(' 开始检查报名状态');
       console.log('用户ID:', memberId);
       console.log('活动ID:', this.eventId);
-      console.log('📋 数据库中的记录ID: 1835469104953163776-event001');
-      console.log('🔍 当前检查的ID:', `${memberId}-${this.eventId}`);
+      console.log(' 数据库中的记录ID: 1835469104953163776-event001');
+      console.log(' 当前检查的ID:', `${memberId}-${this.eventId}`);
       console.log('❓ ID是否匹配:', memberId === '1835469104953163776');
       
       if (!memberId) {
@@ -843,8 +856,8 @@ export default {
         eventId: this.eventId
       };
       
-      console.log('📤 发送请求参数:', requestData);
-      console.log('🔗 请求URL:', `${this.baseUrl}/signup/check`);
+      console.log(' 发送请求参数:', requestData);
+      console.log(' 请求URL:', `${this.baseUrl}/signup/check`);
       
       uni.request({
         url: `${this.baseUrl}/signup/check`,
@@ -855,7 +868,7 @@ export default {
 			"token": token
 		},
         success: (res) => {
-          console.log('📡 API响应:', res.data);
+          console.log(' API响应:', res.data);
           
           if (res.data.code === 200) {
             this.hasSignedUp = res.data.data;

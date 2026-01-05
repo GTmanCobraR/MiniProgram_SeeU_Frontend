@@ -4,14 +4,14 @@
     <view class="content-container">
       <!-- 公司信息 -->
       <view class="company-info">
-        <image src="https://seeutest.duckdns.org/images/static/images/company_logo.jpg" class="company-logo" />
+        <image src="https://seeu-applets.seeu-edu.com/images/static/images/company_logo.jpg" class="company-logo" />
         <text class="company-title">{{ item.offerCompany }}</text>
       </view>
 
       <!-- 用户信息 -->
       <view class="user-info">
         <view class="user-section">
-          <image src="https://seeutest.duckdns.org/images/static/images/person_icon.jpg" class="user-icon" />
+          <image src="https://seeu-applets.seeu-edu.com/images/static/images/person_icon.jpg" class="user-icon" />
           <view class="text-container">
             <text class="user-text">姓名</text>
             <text class="user-value">{{ item.studentName }}</text>
@@ -19,7 +19,7 @@
         </view>
         <view class="divider"></view>
         <view class="user-section">
-          <image src="https://seeutest.duckdns.org/images/static/images/book_icon.jpg" class="user-icon" />
+          <image src="https://seeu-applets.seeu-edu.com/images/static/images/book_icon.jpg" class="user-icon" />
           <view class="text-container">
             <text class="user-text">学历与专业</text>
             <text class="user-value">{{ item.educational === '0' ? '本科' : item.educational === '1' ? '研究生' : '博士' }} · {{ item.major }}</text>
@@ -27,7 +27,7 @@
         </view>
         <view class="divider"></view>
         <view class="user-section">
-          <image src="https://seeutest.duckdns.org/images/static/images/briefcase_icon.jpg" class="user-icon" />
+          <image src="https://seeu-applets.seeu-edu.com/images/static/images/briefcase_icon.jpg" class="user-icon" />
           <view class="text-container">
             <text class="user-text">岗位</text>
             <text class="user-value">{{ item.post }}</text>
@@ -161,7 +161,7 @@ html, body {
 
 .content-container::before {
   content: '';
-  background-image: url('https://seeutest.duckdns.org/images/static/images/watermark.jpg');
+  background-image: url('https://seeu-applets.seeu-edu.com/images/static/images/watermark.jpg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain; /* 设置水印图片的具体尺寸 */

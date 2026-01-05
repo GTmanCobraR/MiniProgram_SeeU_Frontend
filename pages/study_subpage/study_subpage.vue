@@ -111,7 +111,7 @@ export default {
 	  var token = await this.getToken();
 	  try {
 		const res = await requestWithToken(
-		  `https://seeutest.duckdns.org/seeuapp/collection/graduate/check?memberId=${memberId}&exampleId=${exampleId}`,
+		  `https://seeu-applets.seeu-edu.com/v2/seeuapp/collection/graduate/check?memberId=${memberId}&exampleId=${exampleId}`,
 		  'GET',
 		  {},
 		  token
@@ -133,7 +133,7 @@ export default {
 	  var token = await this.getToken();
 	  try {
 		const res = await requestWithToken(
-		  `https://seeutest.duckdns.org/seeuapp/collection/graduate?memberId=${memberId}&exampleId=${exampleId}`,
+		  `https://seeu-applets.seeu-edu.com/v2/seeuapp/collection/graduate?memberId=${memberId}&exampleId=${exampleId}`,
 		  'POST',
 		  {},
 		  token
@@ -154,7 +154,7 @@ export default {
 	  var token = await this.getToken();
 	  try {
 		const res = await requestWithToken(
-		  `https://seeutest.duckdns.org/seeuapp/collection/graduate?memberId=${memberId}&exampleId=${exampleId}`,
+		  `https://seeu-applets.seeu-edu.com/v2/seeuapp/collection/graduate?memberId=${memberId}&exampleId=${exampleId}`,
 		  'DELETE',
 		  {},
 		  token

@@ -9,7 +9,7 @@
       <!-- User Information -->
       <view class="user-info section">
         <view class="user-section">
-          <image src="https://seeutest.duckdns.org/images/static/icons/user.jpg" class="icon" />
+          <image src="https://seeu-applets.seeu-edu.com/images/static/icons/user.jpg" class="icon" />
           <view class="text-container">
             <text class="user-text">姓名</text>
             <text class="user-value">{{ item.studentName }}</text>
@@ -17,7 +17,7 @@
         </view>
         <view class="divider"></view>
         <view class="user-section">
-          <image src="https://seeutest.duckdns.org/images/static/icons/university.jpg" class="icon" />
+          <image src="https://seeu-applets.seeu-edu.com/images/static/icons/university.jpg" class="icon" />
           <view class="text-container">
             <text class="user-text">本科院校</text>
             <text class="user-value">{{ item.undergraduatedCollege }}</text>
@@ -25,7 +25,7 @@
         </view>
         <view class="divider"></view>
         <view class="user-section">
-          <image src="https://seeutest.duckdns.org/images/static/icons/major.jpg" class="icon" />
+          <image src="https://seeu-applets.seeu-edu.com/images/static/icons/major.jpg" class="icon" />
           <view class="text-container">
             <text class="user-text">本科专业</text>
             <text class="user-value">{{ item.major }}</text>
@@ -33,7 +33,7 @@
         </view>
         <view class="divider"></view>
         <view class="user-section">
-          <image src="https://seeutest.duckdns.org/images/static/icons/gpa.jpg" class="icon" />
+          <image src="https://seeu-applets.seeu-edu.com/images/static/icons/gpa.jpg" class="icon" />
           <view class="text-container">
             <text class="user-text">GPA</text>
             <text class="user-value">{{ item.gpa }}</text>
@@ -41,7 +41,7 @@
         </view>
         <view class="divider"></view>
         <view class="user-section">
-          <image src="https://seeutest.duckdns.org/images/static/icons/language.jpg" class="icon" />
+          <image src="https://seeu-applets.seeu-edu.com/images/static/icons/language.jpg" class="icon" />
           <view class="text-container">
             <text class="user-text">语言成绩</text>
             <text class="user-value">{{ item.languageScore }}</text>
@@ -49,7 +49,7 @@
         </view>
         <view class="divider"></view>
         <view class="user-section">
-          <image src="https://seeutest.duckdns.org/images/static/icons/gre.jpg" class="icon" />
+          <image src="https://seeu-applets.seeu-edu.com/images/static/icons/gre.jpg" class="icon" />
           <view class="text-container">
             <text class="user-text">GRE/GMAT</text>
             <text class="user-value">{{ item.greGmat }}</text>
@@ -66,7 +66,7 @@
 
       <!-- Bottom Watermark -->
       <view class="watermark">
-        <image src="https://seeutest.duckdns.org/images/static/images/watermark.jpg" mode="aspectFill" class="watermark-image"/>
+        <image src="https://seeu-applets.seeu-edu.com/images/static/images/watermark.jpg" mode="aspectFill" class="watermark-image"/>
         <text class="watermark-text">—— 让 OFFER 触 手 可 及 ——</text>
       </view>
     </view>

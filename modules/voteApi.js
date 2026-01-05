@@ -6,7 +6,7 @@ import { requestWithToken } from '@/modules/requestUtils.js';
 // 开发环境配置 - 手动切换
 const DEV_CONFIG = {
   useLocalhost: true, // 改为true，使用localhost进行开发
-  localhostUrl: 'https://seeutest.duckdns.org/seeuapp',
+  localhostUrl: 'https://seeu-applets.seeu-edu.com/v2/seeuapp',
   productionUrl: 'https://seeu-applets.seeu-edu.com/seeuapp'
 };
 
